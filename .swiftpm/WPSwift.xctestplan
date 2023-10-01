@@ -1,0 +1,32 @@
+{
+  "configurations" : [
+    {
+      "id" : "779FA71B-8A24-4208-8B95-11435B194ED1",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "codeCoverage" : {
+      "targets" : [
+        {
+          "containerPath" : "container:",
+          "identifier" : "WPSwift",
+          "name" : "WPSwift"
+        }
+      ]
+    }
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:",
+        "identifier" : "WPSwiftTests",
+        "name" : "WPSwiftTests"
+      }
+    }
+  ],
+  "version" : 1
+}

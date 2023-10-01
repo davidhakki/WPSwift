@@ -1,0 +1,25 @@
+/* 
+  Localizable.strings
+  
+
+  Created by Ulaş Sancak on 1.10.2023.
+  
+*/
+
+//Genel
+"ok" = "TAMAM";
+"yes" = "Evet";
+"no" = "Hayır";
+"cancel" = "İptal";
+"success" = "Başarılı";
+"failure" = "Hata";
+"unknown" = "Bilinmeyen";
+"unknown_error" = "Bilinmeyen hata";
+"error" = "Hata";
+"done" = "Bitti";
+"next" = "Sonraki";
+
+//Setup Configuration
+"configuration.error.notSetup" = "Wordpress konfigurasyonu oluşturulmamış. WPSwift.initialize fonksiyonunu kullanın.";
+"configuration.error.route" = "Wordpress `route` boş görünüyor. WPSwift.initialize fonksiyonunu kullanın.";
+"configuration.error.namespace" = "Wordpress `namespace` boş görünüyor. WPSwift.initialize fonksiyonunu kullanın.";

@@ -1,0 +1,25 @@
+/* 
+  Localizable.strings
+  
+
+  Created by Ulaş Sancak on 1.10.2023.
+  
+*/
+
+//General
+"ok" = "OK";
+"yes" = "Yes";
+"no" = "No";
+"cancel" = "Cancel";
+"success" = "Success";
+"failure" = "Failure";
+"unknown" = "Unknown";
+"unknown_error" = "Unknown error";
+"error" = "Error";
+"done" = "Done";
+"next" = "Next";
+
+//Setup Configuration
+"configuration.error.notSetup" = "Wordpress Configuration was not setup. Use WPSwift.configuration function to set it up.";
+"configuration.error.route" = "Wordpress `route` is empty. Use WPSwift.configuration function to set it up.";
+"configuration.error.namespace" = "Wordpress `namespace` is empty. Use WPSwift.configuration function to set it up.";

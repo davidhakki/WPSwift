@@ -16,27 +16,18 @@ struct APIHeaderKeys {
 enum HTTPMethod: String {
     case get = "GET"
     case post = "POST"
+    case put = "PUT"
+    case delete = "DELETE"
     // ... other methods
 }
 
-enum APIEndpoint {
-    case getPosts
-
-    var path: String {
-        switch self {
-        case .getPosts:
-            return "/posts"
-        }
-    }
-}
-
 struct APIRequest<RequestModel: Encodable, Response: Decodable> {
-    let endpoint: APIEndpoint
+    let endpoint: String
     let method: HTTPMethod
     var headers: APIHeaders
     var requestModel: RequestModel?
 
-    init(endpoint: APIEndpoint, method: HTTPMethod, headers: [String : String]? = nil, requestModel: RequestModel? = EmptyModel()) {
+    init(endpoint: String, method: HTTPMethod, headers: [String : String]? = nil, requestModel: RequestModel? = EmptyModel()) {
         self.endpoint = endpoint
         self.method = method
         if var headers = headers {

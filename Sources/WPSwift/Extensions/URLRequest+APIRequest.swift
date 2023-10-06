@@ -9,7 +9,7 @@ import Foundation
 
 extension URLRequest {
     init<RequestModel: Encodable, Response: Decodable>(_ baseURL: URL, request: APIRequest<RequestModel, Response>) throws {
-        let url = baseURL.appendingPathComponent(request.endpoint.path)
+        let url = baseURL.appendingPathComponent(request.endpoint)
         self = URLRequest(url: url)
         self.httpMethod = request.method.rawValue
         self.allHTTPHeaderFields = request.headers

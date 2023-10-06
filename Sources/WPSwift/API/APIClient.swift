@@ -23,7 +23,7 @@ enum NetworkError: LocalizedError {
 }
 
 @available(macOS 14.0, *)
-struct NetworkManager {
+struct APIClient {
     private let baseURL: URL
 
     init() throws {
@@ -43,7 +43,7 @@ struct NetworkManager {
 }
 
 @available(macOS 14.0, *)
-extension NetworkManager {
+extension APIClient {
     func request<RequestModel: Encodable, Response: Decodable>(_ request: APIRequest<RequestModel, Response>) -> AnyPublisher<Response, Error> {
         do {
             let request = try URLRequest(baseURL, request: request)

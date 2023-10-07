@@ -1,0 +1,29 @@
+{
+    "id": 1234,
+    "title": {
+        "rendered": "Sample Post Title"
+    },
+    "content": {
+        "rendered": "<p>This is a mock post content.</p>"
+    },
+    "excerpt": {
+        "rendered": "This is a mock post excerpt."
+    },
+    "date": "2023-10-06T14:08:00Z",
+    "date_gmt": "2023-10-06T14:08:00Z",
+    "slug": "sample-post-slug",
+    "author": 1,
+    "featured_media": 5678,
+    "format": "standard",
+    "sticky": false,
+    "template": "default",
+    "status": "publish",
+    "password": "secretPassword",
+    "comment_status": "open",
+    "ping_status": "closed",
+    "categories": [12, 22],
+    "tags": [52, 62],
+    "meta": {
+        "updated_meta_key": "newValue"
+    }
+}

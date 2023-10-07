@@ -57,8 +57,8 @@ final class APIClientTests: XCTestCase {
             return (response, exampleData)
         }
 
-        let networkManager = try APIClient()
-        let response = try await networkManager.request(APIRequest<EmptyModel, Post>(endpoint: APIEndpoint.Posts.posts.path, method: .get))
+        let networkManager = try APIClient<EmptyModel, Mocked>(.init(endpoint: APIEndpoint.Posts.posts.path, method: .get))
+        let response = try await networkManager.request()
         XCTAssertEqual(response.title, "Title", "Response data does not match the example data.")
     }
 
@@ -70,9 +70,9 @@ final class APIClientTests: XCTestCase {
             return (response, exampleData)
         }
 
-        let networkManager = try APIClient()
+        let networkManager = try APIClient<EmptyModel, Mocked>(.init(endpoint: APIEndpoint.Posts.posts.path, method: .get))
 
-        let publisher = networkManager.request(APIRequest<EmptyModel, Post>(endpoint: APIEndpoint.Posts.posts.path, method: .get))
+        let publisher = networkManager.requestPublisher()
 
         let expectation = self.expectation(description: "api")
 
@@ -103,9 +103,9 @@ final class APIClientTests: XCTestCase {
             return (response, exampleData)
         }
 
-        let networkManager = try APIClient()
+        let networkManager = try APIClient<EmptyModel, Mocked>(.init(endpoint: APIEndpoint.Posts.posts.path, method: .get))
         do {
-            _ = try await networkManager.request(APIRequest<EmptyModel, Mocked>(endpoint: APIEndpoint.Posts.posts.path, method: .get))
+            _ = try await networkManager.request()
             XCTAssert(false, "API returned with success. It should have return with failure!")
         } catch NetworkError.api {
             XCTAssertEqual(NetworkError.api.errorDescription, "API returned an unexpected response.", "Network error message does not match.")
@@ -122,9 +122,9 @@ final class APIClientTests: XCTestCase {
             return (response, exampleData)
         }
 
-        let networkManager = try APIClient()
+        let networkManager = try APIClient<EmptyModel, Mocked>(.init(endpoint: APIEndpoint.Posts.posts.path, method: .get))
 
-        let publisher = networkManager.request(APIRequest<EmptyModel, Mocked>(endpoint: APIEndpoint.Posts.posts.path, method: .get))
+        let publisher = networkManager.requestPublisher()
 
         let expectation = self.expectation(description: "api")
 
@@ -153,9 +153,9 @@ final class APIClientTests: XCTestCase {
 
     func testCombineWithEncodingFailure() throws {
         WPSwift.initialize(route: "http://www.example.com/wp-json", namespace: "wp/v2")
-        let networkManager = try APIClient()
+        let networkManager = try APIClient<EncodableFailure, Mocked>(.init(endpoint: APIEndpoint.Posts.posts.path, method: .post, requestModel: .init()))
 
-        let publisher = networkManager.request(APIRequest<EncodableFailure, Mocked>(endpoint: APIEndpoint.Posts.posts.path, method: .get, requestModel: .init()))
+        let publisher = networkManager.requestPublisher()
 
         let expectation = self.expectation(description: "api")
 

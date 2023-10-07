@@ -1,0 +1,45 @@
+{
+    "id": 1234,
+    "date": "2023-10-06T14:08:00Z",
+    "date_gmt": "2023-10-06T14:08:00Z",
+    "guid": {
+        "rendered": "unique-guid-here"
+    },
+    "modified": "2023-10-06T14:08:00",
+    "modified_gmt": "2023-10-06T14:08:00",
+    "slug": "sample-post-slug",
+    "status": "publish",
+    "type": "post",
+    "link": "https://example.com/sample-post-slug",
+    "title": {
+        "rendered": "Sample Post Title"
+    },
+    "content": {
+        "rendered": "<p>This is a mock post content.</p>"
+    },
+    "excerpt": {
+        "rendered": "This is a mock post excerpt."
+    },
+    "author": 1,
+    "featured_media": 5678,
+    "comment_status": "open",
+    "ping_status": "closed",
+    "sticky": false,
+    "template": "default",
+    "format": "standard",
+    "meta": {
+        "custom_field": "custom value"
+    },
+    "categories": [1, 2],
+    "tags": [3, 4],
+    "permalink_template": "https://example.com/{slug}",
+    "generated_slug": "generated-slug",
+    "password": "secretPassword",
+    "_links": {
+        "self": [
+            {
+                "href": "https://api.example.com/posts/1234"
+            }
+        ]
+    }
+}

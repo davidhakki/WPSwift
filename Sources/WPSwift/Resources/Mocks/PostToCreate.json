@@ -1,0 +1,28 @@
+{
+    "title": {
+        "rendered": "Sample Post Title"
+    },
+    "content": {
+        "rendered": "<p>This is a mock post content.</p>"
+    },
+    "excerpt": {
+        "rendered": "This is a mock post excerpt."
+    },
+    "date": "2023-10-06T14:08:00Z",
+    "date_gmt": "2023-10-06T14:08:00Z",
+    "slug": "sample-post-slug",
+    "author": 1,
+    "featured_media": 5678,
+    "format": "standard",
+    "sticky": false,
+    "template": "default",
+    "status": "publish",
+    "password": "secretPassword",
+    "comment_status": "open",
+    "ping_status": "open",
+    "categories": [10, 20],
+    "tags": [50, 60],
+    "meta": {
+        "custom_meta_key": "value"
+    }
+}

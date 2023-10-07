@@ -11,6 +11,7 @@ import Combine
 enum NetworkError: LocalizedError {
     case urlMalformed
     case api
+    case unknown
 
     var errorDescription: String? {
         switch self {
@@ -18,19 +19,23 @@ enum NetworkError: LocalizedError {
             "URL is malformed."
         case .api:
             "API returned an unexpected response."
+        case .unknown:
+            "Unknown error."
         }
     }
 }
 
 @available(macOS 14.0, *)
-struct APIClient {
+struct APIClient<RequestModel: Encodable, Response: Decodable> {
     private let baseURL: URL
+    private let request: APIRequest<RequestModel, Response>
 
-    init() throws {
+    init(_ request: APIRequest<RequestModel, Response>) throws {
+        self.request = request
         self.baseURL = try URL.initializeWithConfiguration()
     }
 
-    func request<RequestModel: Encodable, Response: Decodable>(_ request: APIRequest<RequestModel, Response>) async throws -> Response {
+    func request() async throws -> Response {
         let request = try URLRequest(baseURL, request: request)
 
         let (data, response) = try await URLSession.shared.data(for: request)
@@ -38,13 +43,13 @@ struct APIClient {
             throw NetworkError.api
         }
 
-        return try JSONDecoder().decode(Response.self, from: data)
+        return try JSONDecoder.initialize().decode(Response.self, from: data)
     }
 }
 
 @available(macOS 14.0, *)
 extension APIClient {
-    func request<RequestModel: Encodable, Response: Decodable>(_ request: APIRequest<RequestModel, Response>) -> AnyPublisher<Response, Error> {
+    func requestPublisher() -> AnyPublisher<Response, Error> {
         do {
             let request = try URLRequest(baseURL, request: request)
 
@@ -56,7 +61,7 @@ extension APIClient {
                     }
                     return element.data
                 }
-                .decode(type: Response.self, decoder: JSONDecoder())
+                .decode(type: Response.self, decoder: JSONDecoder.initialize())
 
             return publisher.eraseToAnyPublisher()
         } catch {

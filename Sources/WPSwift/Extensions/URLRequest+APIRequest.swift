@@ -13,6 +13,6 @@ extension URLRequest {
         self = URLRequest(url: url)
         self.httpMethod = request.method.rawValue
         self.allHTTPHeaderFields = request.headers
-        self.httpBody = try JSONEncoder().encode(request.requestModel)
+        self.httpBody = try JSONEncoder.initialize().encode(request.requestModel)
     }
 }

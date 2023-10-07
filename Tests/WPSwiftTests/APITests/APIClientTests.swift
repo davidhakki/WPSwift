@@ -186,4 +186,13 @@ final class APIClientTests: XCTestCase {
         XCTAssertEqual(request.headers["Content-Type"], "application/json", "Headers don't match.")
         XCTAssertEqual(request.headers["Custom-Header"], "Custom-Value", "Headers don't match.")
     }
+
+    func testErrorDescriptions() {
+        let urlMalformed: NetworkError = .urlMalformed
+        XCTAssertEqual(urlMalformed.errorDescription, "URL is malformed.", "Network Error Description does not matcn.")
+        let api: NetworkError = .api
+        XCTAssertEqual(api.errorDescription, "API returned an unexpected response.", "Network Error Description does not matcn.")
+        let unknown: NetworkError = .unknown
+        XCTAssertEqual(unknown.errorDescription, "Unknown error.", "Network Error Description does not matcn.")
+    }
 }

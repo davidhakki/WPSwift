@@ -26,7 +26,7 @@ protocol BasePost {
     var meta: [String: AnyCodable]? { get }
 }
 
-struct Post: BasePost, Codable {
+public struct Post: BasePost, Codable {
     let id: Int
     let date: Date?
     let date_gmt: Date?
@@ -56,7 +56,7 @@ struct Post: BasePost, Codable {
     let _links: [String: [LinkDetails]]?
 }
 
-struct PostToCreate: BasePost, Encodable {
+public struct PostToCreate: BasePost, Encodable {
     let title: RenderedContent
     let content: RenderedContent
     let date: Date? // ISO 8601 formatted date string
@@ -77,7 +77,7 @@ struct PostToCreate: BasePost, Encodable {
     let meta: [String: AnyCodable]?
 }
 
-struct PostToUpdate: BasePost, Encodable {
+public struct PostToUpdate: BasePost, Encodable {
     let id: Int
     let title: RenderedContent
     let content: RenderedContent
@@ -99,7 +99,7 @@ struct PostToUpdate: BasePost, Encodable {
     let meta: [String: AnyCodable]?
 }
 
-struct RenderedContent: Codable {
+public struct RenderedContent: Codable {
     let rendered: String?
     let protected: Bool?
 
@@ -109,7 +109,7 @@ struct RenderedContent: Codable {
     }
 }
 
-struct LinkDetails: Codable {
+public struct LinkDetails: Codable {
     let href: String?
     let embeddable: Bool?
     let post_type: String?

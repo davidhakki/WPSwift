@@ -26,7 +26,7 @@ enum NetworkError: LocalizedError {
 }
 
 @available(macOS 14.0, *)
-struct APIClient<RequestModel: Encodable, Response: Decodable> {
+public struct APIClient<RequestModel: Encodable, Response: Decodable> {
     private let baseURL: URL
     private let request: APIRequest<RequestModel, Response>
 

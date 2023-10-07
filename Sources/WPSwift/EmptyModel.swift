@@ -7,4 +7,4 @@
 
 import Foundation
 
-struct EmptyModel: Encodable {}
+public struct EmptyModel: Encodable {}

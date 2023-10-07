@@ -12,7 +12,7 @@ extension Post {
     static var mockData: Data {
         get throws {
             guard let url = Bundle.module.url(forResource: "Post", withExtension: "json") else {
-                throw NetworkError.unknown
+                throw MockError.fileNotFound("Post.json")
             }
             let data = try Data(contentsOf: url)
             return data
@@ -48,7 +48,7 @@ extension Post {
             sticky: false,
             template: "default",
             format: "standard",
-            meta: ["custom_field": AnyCodable("custom value")],
+            meta: ["custom_field": .string("custom value")],
             categories: [1, 2],
             tags: [3, 4],
             password: "secretPassword",
@@ -63,7 +63,7 @@ extension [Post] {
     static var mockData: Data {
         get throws {
             guard let url = Bundle.module.url(forResource: "Posts", withExtension: "json") else {
-                throw NetworkError.unknown
+                throw MockError.fileNotFound("Posts.json")
             }
             let data = try Data(contentsOf: url)
             return data
@@ -102,7 +102,7 @@ extension PostToCreate {
             ping_status: "closed",
             categories: [10, 20],
             tags: [50, 60],
-            meta: ["custom_meta_key": AnyCodable("value")]
+            meta: ["custom_meta_key": .bool(true)]
         )
     }
 }
@@ -128,7 +128,7 @@ extension PostToUpdate {
             ping_status: "closed",
             categories: [12, 22],
             tags: [52, 62],
-            meta: ["updated_meta_key": AnyCodable("newValue")]
+            meta: ["updated_meta_key": .double(1234.0)]
         )
     }
 }

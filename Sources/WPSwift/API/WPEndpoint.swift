@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum APIEndpoint {
+enum WPEndpoint {
     enum Posts {
         case posts
         case post(id: Int)

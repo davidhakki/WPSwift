@@ -7,7 +7,7 @@ let package = Package(
     name: "WPSwift",
     defaultLocalization: "en",
     platforms: [
-        .macOS(.v10_14),
+        .macOS(.v13),
         .iOS(.v16)
     ],
     products: [
@@ -16,11 +16,15 @@ let package = Package(
             name: "WPSwift",
             targets: ["WPSwift"]),
     ],
+    dependencies: [
+        .package(url: "https://github.com/rocxteady/Resting.git", .upToNextMajor(from: "0.0.6")),
+    ],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
         // Targets can depend on other targets in this package and products from dependencies.
         .target(
             name: "WPSwift",
+            dependencies: ["Resting"],
             resources: [.process("Resources/Mocks")]
         ),
         .testTarget(

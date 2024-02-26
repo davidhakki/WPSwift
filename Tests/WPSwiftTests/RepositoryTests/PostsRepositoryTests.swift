@@ -11,24 +11,28 @@ import XCTest
 @available(macOS 14.0, *)
 final class PostsRepositoryTests: XCTestCase {
 
+    private let configuration = URLSessionConfiguration.default
+
     override func setUpWithError() throws {
         WPSwift.initialize(route: "https://www.example.com/wp-json", namespace: "wp/v2")
         URLProtocol.registerClass(MockedURLProtocol.self)
+        configuration.protocolClasses = [MockedURLProtocol.self]
     }
 
     override func tearDownWithError() throws {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         URLProtocol.unregisterClass(MockedURLProtocol.self)
+        configuration.protocolClasses = nil
     }
 
     func testGetPosts() async throws {
         MockedURLProtocol.observer = { request -> (URLResponse?, Data?) in
-            let response = HTTPURLResponse(url: URL(string: APIEndpoint.Posts.posts.path)!, statusCode: 200, httpVersion: nil, headerFields: nil)
+            let response = HTTPURLResponse(url: URL(string: WPEndpoint.Posts.posts.path)!, statusCode: 200, httpVersion: nil, headerFields: nil)
             return (response, try [Post].mockData)
         }
         
         let repository = PostsRepository()
-        let postsFromData = try await repository.getPostsClient().request()
+        let postsFromData = try await repository.getPostsClient().fetch()
         XCTAssert(!postsFromData.isEmpty, "Posts from json file looks empty!")
 
         let posts: [Post] = .mock
@@ -79,12 +83,12 @@ final class PostsRepositoryTests: XCTestCase {
 
     func testGetPost() async throws {
         MockedURLProtocol.observer = { request -> (URLResponse?, Data?) in
-            let response = HTTPURLResponse(url: URL(string: APIEndpoint.Posts.posts.path)!, statusCode: 200, httpVersion: nil, headerFields: nil)
+            let response = HTTPURLResponse(url: URL(string: WPEndpoint.Posts.posts.path)!, statusCode: 200, httpVersion: nil, headerFields: nil)
             return (response, try Post.mockData)
         }
 
         let repository = PostsRepository()
-        let postFromData = try await repository.getPostClient(by: 1234).request()
+        let postFromData = try await repository.getPostClient(by: 1234).fetch()
         let post: Post = .mock
 
         // Assertions for all fields
@@ -129,14 +133,14 @@ final class PostsRepositoryTests: XCTestCase {
 
     func testCreatingPost() async throws {
         MockedURLProtocol.observer = { request -> (URLResponse?, Data?) in
-            let response = HTTPURLResponse(url: URL(string: APIEndpoint.Posts.posts.path)!, statusCode: 200, httpVersion: nil, headerFields: nil)
+            let response = HTTPURLResponse(url: URL(string: WPEndpoint.Posts.posts.path)!, statusCode: 200, httpVersion: nil, headerFields: nil)
             return (response, try Post.mockData)
         }
 
         let post: PostToCreate = .mock
 
         let repository = PostsRepository()
-        let postFromData = try await repository.createPostClient(by: post).request()
+        let postFromData = try await repository.createPostClient(by: post).fetch()
 
         // Assertions for all fields
         XCTAssertEqual(post.date, postFromData.date)
@@ -164,14 +168,14 @@ final class PostsRepositoryTests: XCTestCase {
 
     func testUpdatingPost() async throws {
         MockedURLProtocol.observer = { request -> (URLResponse?, Data?) in
-            let response = HTTPURLResponse(url: URL(string: APIEndpoint.Posts.posts.path)!, statusCode: 200, httpVersion: nil, headerFields: nil)
+            let response = HTTPURLResponse(url: URL(string: WPEndpoint.Posts.posts.path)!, statusCode: 200, httpVersion: nil, headerFields: nil)
             return (response, try Post.mockData)
         }
 
         let post: PostToUpdate = .mock
 
         let repository = PostsRepository()
-        let postFromData = try await repository.updatePostClient(by: 1234, post: post).request()
+        let postFromData = try await repository.updatePostClient(by: 1234, post: post).fetch()
 
         // Assertions for all fields
         XCTAssertEqual(post.id, postFromData.id)

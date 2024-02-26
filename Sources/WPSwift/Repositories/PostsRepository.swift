@@ -6,22 +6,22 @@
 //
 
 import Foundation
-
+import Resting
 @available(macOS 14.0, *)
 public struct PostsRepository {
-    public func getPostsClient() throws -> APIClient<EmptyModel, [Post]> {
-        try .init(.init(endpoint: APIEndpoint.Posts.posts.path, method: .get))
+    public func getPostsClient() throws -> WPClient<EmptyModel, [Post]> {
+        try .init(.init(endpoint: WPEndpoint.Posts.posts.path, parameters: nil))
     }
     
-    public func getPostClient(by id: Int) throws -> APIClient<EmptyModel, Post> {
-        try .init(.init(endpoint: APIEndpoint.Posts.post(id: id).path, method: .get))
+    public func getPostClient(by id: Int) throws -> WPClient<EmptyModel, Post> {
+        try .init(.init(endpoint: WPEndpoint.Posts.post(id: id).path, parameters: nil))
     }
 
-    public func createPostClient(by post: PostToCreate) throws -> APIClient<PostToCreate, Post> {
-        try .init(.init(endpoint: APIEndpoint.Posts.posts.path, method: .post, requestModel: post))
+    public func createPostClient(by post: PostToCreate) throws -> WPClient<PostToCreate, Post> {
+        try .init(.init(endpoint: WPEndpoint.Posts.posts.path, method: .post, requestModel: post))
     }
 
-    public func updatePostClient(by id: Int, post: PostToUpdate) throws -> APIClient<PostToUpdate, Post> {
-        try .init(.init(endpoint: APIEndpoint.Posts.post(id: id).path, method: .post, requestModel: post))
+    public func updatePostClient(by id: Int, post: PostToUpdate) throws -> WPClient<PostToUpdate, Post> {
+        try .init(.init(endpoint: WPEndpoint.Posts.post(id: id).path, method: .post, requestModel: post))
     }
 }

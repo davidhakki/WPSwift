@@ -11,28 +11,42 @@ import Resting
 
 enum NetworkError: LocalizedError {
     case urlMalformed
-    case api
+    case api(Error)
     case unknown
 
     var errorDescription: String? {
         switch self {
         case .urlMalformed:
             "URL is malformed."
-        case .api:
-            "API returned an unexpected response."
+        case .api(let error):
+            error.localizedDescription
         case .unknown:
             "Unknown error."
         }
     }
 }
 
+//extension NetworkError: Equatable {
+//    static func == (lhs: NetworkError, rhs: NetworkError) -> Bool {
+//        switch (lhs, rhs) {
+//        case (.urlMalformed, .urlMalformed):
+//            return true
+//        case (.api(let errorLeft), .api(let errorRight)):
+//            return errorLeft.code == errorRight.code
+//        case (.unknown, .unknown):
+//            return true
+//        default:
+//            return false
+//        }
+//    }
+//}
+
 public struct WPClient<RequestModel: Encodable, Response: Decodable> {
     private let restClient: RestClient
     private let requestConfig: RequestConfiguration
 
     init(_ configuration: WPClientConfiguration) throws {
-        let clientConfiguration = RestClientConfiguration(sessionConfiguration: configuration.sessionConfiguration, jsonDecoder: .initialize())
-        restClient = RestClient(configuration: clientConfiguration)
+        restClient = RestClient.initialize()
         switch configuration.parameterType {
         case .object(let dictionary):
             requestConfig = RequestConfiguration(
@@ -59,12 +73,19 @@ public struct WPClient<RequestModel: Encodable, Response: Decodable> {
     }
 
     func fetch() async throws -> Response {
-        return try await restClient.fetch(with: requestConfig)
+        do {
+            return try await restClient.fetch(with: requestConfig)
+        } catch {
+            throw NetworkError.api(error)
+        }
     }
 }
 
 extension WPClient {
-    func fetchPublisher() -> AnyPublisher<Response, Error> {
+    func fetchPublisher() -> AnyPublisher<Response, NetworkError> {
         restClient.publisher(with: requestConfig)
+            .mapError {
+                NetworkError.api($0)
+            }.eraseToAnyPublisher()
     }
 }

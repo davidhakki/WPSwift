@@ -10,19 +10,15 @@ import XCTest
 
 @available(macOS 14.0, *)
 final class PostsRepositoryTests: XCTestCase {
-
-    private let configuration = URLSessionConfiguration.default
-
+    
     override func setUpWithError() throws {
         WPSwift.initialize(route: "https://www.example.com/wp-json", namespace: "wp/v2")
-        URLProtocol.registerClass(MockedURLProtocol.self)
-        configuration.protocolClasses = [MockedURLProtocol.self]
+        WPSwift.sessionConfiguration.protocolClasses = [MockedURLProtocol.self]
     }
 
     override func tearDownWithError() throws {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
-        URLProtocol.unregisterClass(MockedURLProtocol.self)
-        configuration.protocolClasses = nil
+        WPSwift.sessionConfiguration.protocolClasses = nil
     }
 
     func testGetPosts() async throws {

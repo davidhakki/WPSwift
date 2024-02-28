@@ -34,6 +34,7 @@ public struct WPSwift {
         }
     }
     static private var _configuration: WPConfiguration?
+    static let sessionConfiguration = URLSessionConfiguration.default
 
     static func resetConfiguration() {
         _configuration = nil

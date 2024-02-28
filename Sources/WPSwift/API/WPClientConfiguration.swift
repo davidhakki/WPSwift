@@ -14,15 +14,13 @@ struct WPClientConfiguration {
         case model(Encodable)
     }
 
-    let sessionConfiguration: URLSessionConfiguration
     let endpoint: String
     let method: HTTPMethod
     let encoding: HTTPEncoding
     let headers: [String: String]?
     let parameterType: ParameterType?
 
-    init(sessionConfiguration: URLSessionConfiguration = .default, endpoint: String, method: HTTPMethod = .get, parameters: [String : Any]?, encoding: HTTPEncoding = .urlEncoded, headers: [String: String]? = nil) {
-        self.sessionConfiguration = sessionConfiguration
+    init(endpoint: String, method: HTTPMethod = .get, parameters: [String : Any]?, encoding: HTTPEncoding = .urlEncoded, headers: [String: String]? = nil) {
         self.endpoint = endpoint
         self.method = method
         self.encoding = encoding
@@ -34,8 +32,7 @@ struct WPClientConfiguration {
         self.headers = headers
     }
 
-    init(sessionConfiguration: URLSessionConfiguration = .default, endpoint: String, method: HTTPMethod = .post, requestModel: Encodable?, encoding: HTTPEncoding = .json, headers: [String: String]? = nil) {
-        self.sessionConfiguration = sessionConfiguration
+    init(endpoint: String, method: HTTPMethod = .post, requestModel: Encodable?, encoding: HTTPEncoding = .json, headers: [String: String]? = nil) {
         self.endpoint = endpoint
         self.method = method
         self.encoding = encoding

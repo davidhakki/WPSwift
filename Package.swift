@@ -6,10 +6,7 @@ import PackageDescription
 let package = Package(
     name: "WPSwift",
     defaultLocalization: "en",
-    platforms: [
-        .macOS(.v13),
-        .iOS(.v16)
-    ],
+    platforms: [.iOS(.v15), .macOS(.v12), .watchOS(.v8), .tvOS(.v15)],
     products: [
         // Products define the executables and libraries a package produces, making them visible to other packages.
         .library(
@@ -17,7 +14,7 @@ let package = Package(
             targets: ["WPSwift"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/rocxteady/Resting.git", .upToNextMajor(from: "0.0.6")),
+        .package(url: "https://github.com/rocxteady/Resting.git", .upToNextMajor(from: "0.0.9")),
     ],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
@@ -25,11 +22,16 @@ let package = Package(
         .target(
             name: "WPSwift",
             dependencies: ["Resting"],
-            resources: [.process("Resources/Mocks")]
+            resources: [.process("Resources")]
+        ),
+        .testTarget(
+            name: "LocalizationTests",
+            dependencies: ["WPSwift"]
         ),
         .testTarget(
             name: "WPSwiftTests",
-            dependencies: ["WPSwift"]
+            dependencies: ["WPSwift"],
+            resources: [.process("Resources")]
         )
     ]
 )

@@ -26,21 +26,6 @@ enum NetworkError: LocalizedError {
     }
 }
 
-//extension NetworkError: Equatable {
-//    static func == (lhs: NetworkError, rhs: NetworkError) -> Bool {
-//        switch (lhs, rhs) {
-//        case (.urlMalformed, .urlMalformed):
-//            return true
-//        case (.api(let errorLeft), .api(let errorRight)):
-//            return errorLeft.code == errorRight.code
-//        case (.unknown, .unknown):
-//            return true
-//        default:
-//            return false
-//        }
-//    }
-//}
-
 public struct WPClient<RequestModel: Encodable, Response: Decodable> {
     private let restClient: RestClient
     private let requestConfig: RequestConfiguration

@@ -26,23 +26,23 @@ jobs:
     - name: Run tests
       run: |
         xcodebuild \
-          -scheme Resting \
+          -scheme WPSwift \
           -sdk macosx14.5 \
           -destination 'platform=macOS' \
           test &&
         xcodebuild \
-          -scheme Resting \
+          -scheme WPSwift \
           -destination 'platform=iOS Simulator,name=iPhone 15 Pro,OS=17.5' \
           test &&
         xcodebuild \
-          -scheme Resting \
+          -scheme WPSwift \
           -destination 'platform=watchOS Simulator,name=Apple Watch Series 9 (41mm),OS=10.5' \
           test &&
         xcodebuild \
-          -scheme Resting \
+          -scheme WPSwift \
           -destination 'platform=tvOS Simulator,name=Apple TV 4K (3rd generation) (at 1080p),OS=17.5' \
           test
         xcodebuild \
-          -scheme Resting \
+          -scheme WPSwift \
           -destination 'platform=visionOS Simulator,name=Apple Vision Pro,OS=1.2' \
           test

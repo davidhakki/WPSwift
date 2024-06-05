@@ -9,7 +9,6 @@ import XCTest
 @testable import WPSwift
 import Combine
 
-@available(macOS 14.0, *)
 final class APIClientTests: XCTestCase {
     private struct Mocked: Decodable {
         let title: String

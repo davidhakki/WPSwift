@@ -7,7 +7,6 @@
 
 import Foundation
 
-@available(macOS 13.0, *)
 extension String {
     static func initialize(with endpoint: String) throws -> String {
         let configuration = try WPSwift.configuration

@@ -8,7 +8,6 @@
 import XCTest
 @testable import WPSwift
 
-@available(macOS 14.0, *)
 final class PostsRepositoryTests: XCTestCase {
     
     override func setUpWithError() throws {

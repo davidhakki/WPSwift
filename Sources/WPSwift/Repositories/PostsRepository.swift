@@ -7,7 +7,7 @@
 
 import Foundation
 import Resting
-@available(macOS 14.0, *)
+
 public struct PostsRepository {
     public func getPostsClient() throws -> WPClient<EmptyModel, [Post]> {
         try .init(.init(endpoint: WPEndpoint.Posts.posts.path, parameters: nil))

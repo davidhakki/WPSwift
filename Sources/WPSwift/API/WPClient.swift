@@ -9,12 +9,12 @@ import Foundation
 import Combine
 import Resting
 
-enum NetworkError: LocalizedError {
+public enum NetworkError: LocalizedError {
     case urlMalformed
     case api(Error)
     case unknown
 
-    var errorDescription: String? {
+    public var errorDescription: String? {
         switch self {
         case .urlMalformed:
             "URL is malformed."
@@ -57,7 +57,7 @@ public struct WPClient<RequestModel: Encodable, Response: Decodable> {
         }
     }
 
-    func fetch() async throws -> Response {
+    public func fetch() async throws -> Response {
         do {
             return try await restClient.fetch(with: requestConfig)
         } catch {
@@ -67,7 +67,7 @@ public struct WPClient<RequestModel: Encodable, Response: Decodable> {
 }
 
 extension WPClient {
-    func fetchPublisher() -> AnyPublisher<Response, NetworkError> {
+    public func fetchPublisher() -> AnyPublisher<Response, NetworkError> {
         restClient.publisher(with: requestConfig)
             .mapError {
                 NetworkError.api($0)

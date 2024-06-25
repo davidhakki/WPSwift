@@ -36,4 +36,21 @@ final class APIInfoRepositoryTests: XCTestCase {
         XCTAssertEqual(info.url, infoFromData.url)
         XCTAssertEqual(info.home, infoFromData.home)
     }
+    
+    func testCheckingAPIWithURLGiven() async throws {
+        MockedURLProtocol.observer = { request -> (URLResponse?, Data?) in
+            let response = HTTPURLResponse(url: URL(string: "https://www.example.com/wp-json")!, statusCode: 200, httpVersion: nil, headerFields: nil)
+            return (response, try APIInfo.mockData)
+        }
+        
+        let repository = APIInfoRepository()
+        let infoFromData = try await repository.getAPIInfo(route: "https://time.com/wp-json")
+
+        let info: APIInfo = .mock
+        
+        XCTAssertEqual(info.name, infoFromData.name)
+        XCTAssertEqual(info.description, infoFromData.description)
+        XCTAssertEqual(info.url, infoFromData.url)
+        XCTAssertEqual(info.home, infoFromData.home)
+    }
 }

@@ -17,4 +17,12 @@ extension String {
         url.append(path: endpoint)
         return url.absoluteString
     }
+    
+    static func initializeRoute() throws -> String {
+        let configuration = try WPSwift.configuration
+        guard let url = URL(string: configuration.route) else {
+            throw NetworkError.urlMalformed
+        }
+        return url.absoluteString
+    }
 }

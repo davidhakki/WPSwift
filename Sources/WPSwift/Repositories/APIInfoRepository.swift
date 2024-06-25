@@ -9,6 +9,8 @@ import Foundation
 import Resting
 
 public struct APIInfoRepository {
+    public init() {}
+
     public func getAPIInfo(route: String? = nil) async throws -> APIInfo {
         let urlString = if let route {
             route

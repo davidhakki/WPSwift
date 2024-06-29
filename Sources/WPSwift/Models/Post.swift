@@ -54,6 +54,36 @@ public struct Post: BasePost, Codable {
     public let permalink_template: String?
     public let generated_slug: String?
     public let _links: [String: [LinkDetails]]?
+    
+    public init(id: Int, date: Date? = nil, date_gmt: Date? = nil, guid: RenderedContent? = nil, modified: String? = nil, modified_gmt: String? = nil, slug: String? = nil, status: String? = nil, type: String? = nil, link: String? = nil, title: RenderedContent? = nil, content: RenderedContent? = nil, excerpt: RenderedContent? = nil, author: Int? = nil, featured_media: Int? = nil, comment_status: String? = nil, ping_status: String? = nil, sticky: Bool? = nil, template: String? = nil, format: String? = nil, meta: [String: AnyCodable]? = nil, categories: [Int]? = nil, tags: [Int]? = nil, password: String? = nil, permalink_template: String? = nil, generated_slug: String? = nil, _links: [String: [LinkDetails]]? = nil) {
+        self.id = id
+        self.date = date
+        self.date_gmt = date_gmt
+        self.guid = guid
+        self.modified = modified
+        self.modified_gmt = modified_gmt
+        self.slug = slug
+        self.status = status
+        self.type = type
+        self.link = link
+        self.title = title
+        self.content = content
+        self.excerpt = excerpt
+        self.author = author
+        self.featured_media = featured_media
+        self.comment_status = comment_status
+        self.ping_status = ping_status
+        self.sticky = sticky
+        self.template = template
+        self.format = format
+        self.meta = meta
+        self.categories = categories
+        self.tags = tags
+        self.password = password
+        self.permalink_template = permalink_template
+        self.generated_slug = generated_slug
+        self._links = _links
+    }
 }
 
 public struct PostToCreate: BasePost, Encodable {
@@ -75,6 +105,27 @@ public struct PostToCreate: BasePost, Encodable {
     public let categories: [Int]?
     public let tags: [Int]?
     public let meta: [String: AnyCodable]?
+    
+    public init(title: RenderedContent, content: RenderedContent, date: Date? = nil, date_gmt: Date? = nil, slug: String? = nil, author: Int? = nil, featured_media: Int? = nil, format: String? = nil, sticky: Bool? = nil, template: String? = nil, excerpt: RenderedContent? = nil, status: String? = nil, password: String? = nil, comment_status: String? = nil, ping_status: String? = nil, categories: [Int]? = nil, tags: [Int]? = nil, meta: [String: AnyCodable]? = nil) {
+        self.title = title
+        self.content = content
+        self.date = date
+        self.date_gmt = date_gmt
+        self.slug = slug
+        self.author = author
+        self.featured_media = featured_media
+        self.format = format
+        self.sticky = sticky
+        self.template = template
+        self.excerpt = excerpt
+        self.status = status
+        self.password = password
+        self.comment_status = comment_status
+        self.ping_status = ping_status
+        self.categories = categories
+        self.tags = tags
+        self.meta = meta
+    }
 }
 
 public struct PostToUpdate: BasePost, Encodable {
@@ -97,6 +148,28 @@ public struct PostToUpdate: BasePost, Encodable {
     public let categories: [Int]?
     public let tags: [Int]?
     public let meta: [String: AnyCodable]?
+    
+    public init(id: Int, title: RenderedContent, content: RenderedContent, date: Date? = nil, date_gmt: Date? = nil, slug: String? = nil, author: Int? = nil, featured_media: Int? = nil, format: String? = nil, sticky: Bool? = nil, template: String? = nil, excerpt: RenderedContent? = nil, status: String? = nil, password: String? = nil, comment_status: String? = nil, ping_status: String? = nil, categories: [Int]? = nil, tags: [Int]? = nil, meta: [String: AnyCodable]? = nil) {
+        self.id = id
+        self.title = title
+        self.content = content
+        self.date = date
+        self.date_gmt = date_gmt
+        self.slug = slug
+        self.author = author
+        self.featured_media = featured_media
+        self.format = format
+        self.sticky = sticky
+        self.template = template
+        self.excerpt = excerpt
+        self.status = status
+        self.password = password
+        self.comment_status = comment_status
+        self.ping_status = ping_status
+        self.categories = categories
+        self.tags = tags
+        self.meta = meta
+    }
 }
 
 public struct RenderedContent: Codable {

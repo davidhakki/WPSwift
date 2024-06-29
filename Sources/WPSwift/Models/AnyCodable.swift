@@ -9,12 +9,12 @@ import Foundation
 
 // Because the WordPress API can return meta data with different value types,
 // we can use the following general-purpose Codable struct:
-enum AnyCodable: Codable {
+public enum AnyCodable: Codable {
     case double(Double)
     case string(String)
     case bool(Bool)
 
-    func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: Encoder) throws {
         switch self {
         case .double(let double):
             try double.encode(to: encoder)
@@ -25,7 +25,7 @@ enum AnyCodable: Codable {
         }
     }
 
-    init(from decoder: Decoder) throws {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
 
         if let doubleVal = try? container.decode(Double.self) {

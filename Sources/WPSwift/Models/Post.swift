@@ -27,81 +27,81 @@ protocol BasePost {
 }
 
 public struct Post: BasePost, Codable {
-    let id: Int
-    let date: Date?
-    let date_gmt: Date?
-    let guid: RenderedContent?
-    let modified: String?
-    let modified_gmt: String?
-    let slug: String?
-    let status: String?
-    let type: String?
-    let link: String?
-    let title: RenderedContent?
-    let content: RenderedContent?
-    let excerpt: RenderedContent?
-    let author: Int?
-    let featured_media: Int?
-    let comment_status: String?
-    let ping_status: String?
-    let sticky: Bool?
-    let template: String?
-    let format: String?
-    let meta: [String: AnyCodable]?
-    let categories: [Int]?
-    let tags: [Int]?
-    let password: String?
-    let permalink_template: String?
-    let generated_slug: String?
-    let _links: [String: [LinkDetails]]?
+    public let id: Int
+    public let date: Date?
+    public let date_gmt: Date?
+    public let guid: RenderedContent?
+    public let modified: String?
+    public let modified_gmt: String?
+    public let slug: String?
+    public let status: String?
+    public let type: String?
+    public let link: String?
+    public let title: RenderedContent?
+    public let content: RenderedContent?
+    public let excerpt: RenderedContent?
+    public let author: Int?
+    public let featured_media: Int?
+    public let comment_status: String?
+    public let ping_status: String?
+    public let sticky: Bool?
+    public let template: String?
+    public let format: String?
+    public let meta: [String: AnyCodable]?
+    public let categories: [Int]?
+    public let tags: [Int]?
+    public let password: String?
+    public let permalink_template: String?
+    public let generated_slug: String?
+    public let _links: [String: [LinkDetails]]?
 }
 
 public struct PostToCreate: BasePost, Encodable {
-    let title: RenderedContent
-    let content: RenderedContent
-    let date: Date? // ISO 8601 formatted date string
-    let date_gmt: Date? // ISO 8601 formatted date string in GMT
-    let slug: String?
-    let author: Int? // User ID of the author
-    let featured_media: Int? // Media ID for the featured image
-    let format: String?
-    let sticky: Bool?
-    let template: String?
-    let excerpt: RenderedContent?
-    let status: String?
-    let password: String?
-    let comment_status: String?
-    let ping_status: String?
-    let categories: [Int]?
-    let tags: [Int]?
-    let meta: [String: AnyCodable]?
+    public let title: RenderedContent
+    public let content: RenderedContent
+    public let date: Date? // ISO 8601 formatted date string
+    public let date_gmt: Date? // ISO 8601 formatted date string in GMT
+    public let slug: String?
+    public let author: Int? // User ID of the author
+    public let featured_media: Int? // Media ID for the featured image
+    public let format: String?
+    public let sticky: Bool?
+    public let template: String?
+    public let excerpt: RenderedContent?
+    public let status: String?
+    public let password: String?
+    public let comment_status: String?
+    public let ping_status: String?
+    public let categories: [Int]?
+    public let tags: [Int]?
+    public let meta: [String: AnyCodable]?
 }
 
 public struct PostToUpdate: BasePost, Encodable {
-    let id: Int
-    let title: RenderedContent
-    let content: RenderedContent
-    let date: Date? // ISO 8601 formatted date string
-    let date_gmt: Date? // ISO 8601 formatted date string in GMT
-    let slug: String?
-    let author: Int? // User ID of the author
-    let featured_media: Int? // Media ID for the featured image
-    let format: String?
-    let sticky: Bool?
-    let template: String?
-    let excerpt: RenderedContent?
-    let status: String?
-    let password: String?
-    let comment_status: String?
-    let ping_status: String?
-    let categories: [Int]?
-    let tags: [Int]?
-    let meta: [String: AnyCodable]?
+    public let id: Int
+    public let title: RenderedContent
+    public let content: RenderedContent
+    public let date: Date? // ISO 8601 formatted date string
+    public let date_gmt: Date? // ISO 8601 formatted date string in GMT
+    public let slug: String?
+    public let author: Int? // User ID of the author
+    public let featured_media: Int? // Media ID for the featured image
+    public let format: String?
+    public let sticky: Bool?
+    public let template: String?
+    public let excerpt: RenderedContent?
+    public let status: String?
+    public let password: String?
+    public let comment_status: String?
+    public let ping_status: String?
+    public let categories: [Int]?
+    public let tags: [Int]?
+    public let meta: [String: AnyCodable]?
 }
 
 public struct RenderedContent: Codable {
-    let rendered: String?
-    let protected: Bool?
+    public let rendered: String?
+    public let protected: Bool?
 
     init(rendered: String? = nil, protected: Bool? = nil) {
         self.rendered = rendered
@@ -110,10 +110,10 @@ public struct RenderedContent: Codable {
 }
 
 public struct LinkDetails: Codable {
-    let href: String?
-    let embeddable: Bool?
-    let post_type: String?
-    let taxonomy: String?
+    public let href: String?
+    public let embeddable: Bool?
+    public let post_type: String?
+    public let taxonomy: String?
 
     init(href: String? = nil, embeddable: Bool? = nil, post_type: String? = nil, taxonomy: String? = nil) {
         self.href = href

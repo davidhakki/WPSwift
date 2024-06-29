@@ -176,7 +176,7 @@ public struct RenderedContent: Codable {
     public let rendered: String?
     public let protected: Bool?
 
-    init(rendered: String? = nil, protected: Bool? = nil) {
+    public init(rendered: String? = nil, protected: Bool? = nil) {
         self.rendered = rendered
         self.protected = protected
     }
@@ -188,7 +188,7 @@ public struct LinkDetails: Codable {
     public let post_type: String?
     public let taxonomy: String?
 
-    init(href: String? = nil, embeddable: Bool? = nil, post_type: String? = nil, taxonomy: String? = nil) {
+    public init(href: String? = nil, embeddable: Bool? = nil, post_type: String? = nil, taxonomy: String? = nil) {
         self.href = href
         self.embeddable = embeddable
         self.post_type = post_type

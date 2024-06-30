@@ -39,27 +39,14 @@ final class PostsRepositoryTests: XCTestCase {
         // Assertions for all fields
         XCTAssertEqual(post.id, postFromData.id)
         XCTAssertEqual(post.date, postFromData.date)
-        XCTAssertEqual(post.date_gmt, postFromData.date_gmt)
-        XCTAssertEqual(post.guid?.rendered, postFromData.guid?.rendered)
         XCTAssertEqual(post.modified, postFromData.modified)
-        XCTAssertEqual(post.modified_gmt, postFromData.modified_gmt)
-        XCTAssertEqual(post.slug, postFromData.slug)
         XCTAssertEqual(post.status, postFromData.status)
-        XCTAssertEqual(post.type, postFromData.type)
-        XCTAssertEqual(post.link, postFromData.link)
-        XCTAssertEqual(post.title?.rendered, postFromData.title?.rendered)
-        XCTAssertEqual(post.content?.rendered, postFromData.content?.rendered)
-        XCTAssertEqual(post.excerpt?.rendered, postFromData.excerpt?.rendered)
+        XCTAssertEqual(post.title.rendered, postFromData.title.rendered)
+        XCTAssertEqual(post.content.rendered, postFromData.content.rendered)
+        XCTAssertEqual(post.excerpt.rendered, postFromData.excerpt.rendered)
         XCTAssertEqual(post.author, postFromData.author)
         XCTAssertEqual(post.featured_media, postFromData.featured_media)
         XCTAssertEqual(post.comment_status, postFromData.comment_status)
-        XCTAssertEqual(post.ping_status, postFromData.ping_status)
-        XCTAssertEqual(post.sticky, postFromData.sticky)
-        XCTAssertEqual(post.template, postFromData.template)
-        XCTAssertEqual(post.format, postFromData.format)
-        XCTAssertEqual(post.password, postFromData.password)
-        XCTAssertEqual(post.permalink_template, postFromData.permalink_template)
-        XCTAssertEqual(post.generated_slug, postFromData.generated_slug)
 
         // Comparing meta, categories, tags and _links can be a bit more complex
         // due to their nature. Here, I'm just checking if they exist in both instances.
@@ -71,9 +58,6 @@ final class PostsRepositoryTests: XCTestCase {
 
         XCTAssertNotNil(post.tags)
         XCTAssertNotNil(postFromData.tags)
-
-        XCTAssertNotNil(post._links)
-        XCTAssertNotNil(postFromData._links)
     }
 
     func testGetPost() async throws {
@@ -89,27 +73,14 @@ final class PostsRepositoryTests: XCTestCase {
         // Assertions for all fields
         XCTAssertEqual(post.id, postFromData.id)
         XCTAssertEqual(post.date, postFromData.date)
-        XCTAssertEqual(post.date_gmt, postFromData.date_gmt)
-        XCTAssertEqual(post.guid?.rendered, postFromData.guid?.rendered)
         XCTAssertEqual(post.modified, postFromData.modified)
-        XCTAssertEqual(post.modified_gmt, postFromData.modified_gmt)
-        XCTAssertEqual(post.slug, postFromData.slug)
         XCTAssertEqual(post.status, postFromData.status)
-        XCTAssertEqual(post.type, postFromData.type)
-        XCTAssertEqual(post.link, postFromData.link)
-        XCTAssertEqual(post.title?.rendered, postFromData.title?.rendered)
-        XCTAssertEqual(post.content?.rendered, postFromData.content?.rendered)
-        XCTAssertEqual(post.excerpt?.rendered, postFromData.excerpt?.rendered)
+        XCTAssertEqual(post.title.rendered, postFromData.title.rendered)
+        XCTAssertEqual(post.content.rendered, postFromData.content.rendered)
+        XCTAssertEqual(post.excerpt.rendered, postFromData.excerpt.rendered)
         XCTAssertEqual(post.author, postFromData.author)
         XCTAssertEqual(post.featured_media, postFromData.featured_media)
         XCTAssertEqual(post.comment_status, postFromData.comment_status)
-        XCTAssertEqual(post.ping_status, postFromData.ping_status)
-        XCTAssertEqual(post.sticky, postFromData.sticky)
-        XCTAssertEqual(post.template, postFromData.template)
-        XCTAssertEqual(post.format, postFromData.format)
-        XCTAssertEqual(post.password, postFromData.password)
-        XCTAssertEqual(post.permalink_template, postFromData.permalink_template)
-        XCTAssertEqual(post.generated_slug, postFromData.generated_slug)
 
         // Comparing meta, categories, tags and _links can be a bit more complex
         // due to their nature. Here, I'm just checking if they exist in both instances.
@@ -121,9 +92,37 @@ final class PostsRepositoryTests: XCTestCase {
 
         XCTAssertNotNil(post.tags)
         XCTAssertNotNil(postFromData.tags)
+        
+        let authorFromData = postFromData.embeddedContent.author!
+        let author = post.embeddedContent.author!
+        
+        // Assertions for author
+        XCTAssertEqual(author.id, authorFromData.id)
+        XCTAssertEqual(author.name, authorFromData.name)
+        XCTAssertEqual(author.description, authorFromData.description)
+        
+        let featuredMediaFromData = postFromData.embeddedContent.featuredMedia!
+        let featuredMedia = post.embeddedContent.featuredMedia!
+        
+        // Assertions for featured media
+        XCTAssertEqual(featuredMedia.id, featuredMediaFromData.id)
+        XCTAssertEqual(featuredMedia.sourceURL, featuredMediaFromData.sourceURL)
+        XCTAssertEqual(featuredMedia.caption.rendered, featuredMediaFromData.caption.rendered)
+        XCTAssertEqual(featuredMedia.altText, featuredMediaFromData.altText)
+        XCTAssertEqual(featuredMedia.mediaDetails.width, featuredMediaFromData.mediaDetails.width)
+        XCTAssertEqual(featuredMedia.mediaDetails.height, featuredMediaFromData.mediaDetails.height)
+        XCTAssertEqual(featuredMedia.thumbnailURL, featuredMediaFromData.thumbnailURL)
+        
+        XCTAssertEqual(featuredMedia.mediaDetails.height, featuredMediaFromData.mediaDetails.height)
+        XCTAssertEqual(featuredMedia.mediaDetails.width, featuredMediaFromData.mediaDetails.width)
+        XCTAssertEqual(featuredMedia.mediaDetails.sizes.count, featuredMediaFromData.mediaDetails.sizes.count)
+        let thumbnailFromData = featuredMediaFromData.mediaDetails.sizes["thumbnail"]!
+        let thumbnail = featuredMedia.mediaDetails.sizes["thumbnail"]!
 
-        XCTAssertNotNil(post._links)
-        XCTAssertNotNil(postFromData._links)
+        // Assertions for thumbnail
+        XCTAssertEqual(thumbnail.width, thumbnailFromData.width)
+        XCTAssertEqual(thumbnail.height, thumbnailFromData.height)
+        XCTAssertEqual(thumbnail.sourceURL, thumbnailFromData.sourceURL)        
     }
 
     func testCreatingPost() async throws {
@@ -138,27 +137,26 @@ final class PostsRepositoryTests: XCTestCase {
         let postFromData = try await repository.createPostClient(by: post).fetch()
 
         // Assertions for all fields
-        XCTAssertEqual(post.date, postFromData.date)
-        XCTAssertEqual(post.date_gmt, postFromData.date_gmt)
-        XCTAssertEqual(post.slug, postFromData.slug)
+        XCTAssertNotNil(postFromData.date)
+        XCTAssertNotNil(postFromData.modified)
         XCTAssertEqual(post.status, postFromData.status)
-        XCTAssertEqual(post.title.rendered, postFromData.title?.rendered)
-        XCTAssertEqual(post.content.rendered, postFromData.content?.rendered)
-        XCTAssertEqual(post.excerpt?.rendered, postFromData.excerpt?.rendered)
-        XCTAssertEqual(post.author, postFromData.author)
-        XCTAssertEqual(post.featured_media, postFromData.featured_media)
+        XCTAssertEqual(post.title.rendered, postFromData.title.rendered)
+        XCTAssertEqual(post.content.rendered, postFromData.content.rendered)
+        XCTAssertEqual(post.excerpt?.rendered, postFromData.excerpt.rendered)
         XCTAssertEqual(post.comment_status, postFromData.comment_status)
-        XCTAssertEqual(post.ping_status, postFromData.ping_status)
-        XCTAssertEqual(post.sticky, postFromData.sticky)
-        XCTAssertEqual(post.template, postFromData.template)
-        XCTAssertEqual(post.format, postFromData.format)
-        XCTAssertEqual(post.password, postFromData.password)
 
         // Comparing meta, categories, tags and _links can be a bit more complex
         // due to their nature. Here, I'm just checking if they exist in both instances.
-        XCTAssertNotNil(post.meta)
+        XCTAssertNotNil(postFromData.meta)
+
         XCTAssertNotNil(post.categories)
+        XCTAssertNotNil(postFromData.categories)
+
         XCTAssertNotNil(post.tags)
+        XCTAssertNotNil(postFromData.tags)
+        
+        XCTAssertNotNil(postFromData.embeddedContent.author)
+        XCTAssertNotNil(postFromData.embeddedContent.featuredMedia)
     }
 
     func testUpdatingPost() async throws {
@@ -174,27 +172,26 @@ final class PostsRepositoryTests: XCTestCase {
 
         // Assertions for all fields
         XCTAssertEqual(post.id, postFromData.id)
-        XCTAssertEqual(post.date, postFromData.date)
-        XCTAssertEqual(post.date_gmt, postFromData.date_gmt)
-        XCTAssertEqual(post.slug, postFromData.slug)
+        XCTAssertNotNil(postFromData.date)
+        XCTAssertNotNil(postFromData.modified)
         XCTAssertEqual(post.status, postFromData.status)
-        XCTAssertEqual(post.title.rendered, postFromData.title?.rendered)
-        XCTAssertEqual(post.content.rendered, postFromData.content?.rendered)
-        XCTAssertEqual(post.excerpt?.rendered, postFromData.excerpt?.rendered)
-        XCTAssertEqual(post.author, postFromData.author)
-        XCTAssertEqual(post.featured_media, postFromData.featured_media)
+        XCTAssertEqual(post.title.rendered, postFromData.title.rendered)
+        XCTAssertEqual(post.content.rendered, postFromData.content.rendered)
+        XCTAssertEqual(post.excerpt?.rendered, postFromData.excerpt.rendered)
         XCTAssertEqual(post.comment_status, postFromData.comment_status)
-        XCTAssertEqual(post.ping_status, postFromData.ping_status)
-        XCTAssertEqual(post.sticky, postFromData.sticky)
-        XCTAssertEqual(post.template, postFromData.template)
-        XCTAssertEqual(post.format, postFromData.format)
-        XCTAssertEqual(post.password, postFromData.password)
 
         // Comparing meta, categories, tags and _links can be a bit more complex
         // due to their nature. Here, I'm just checking if they exist in both instances.
-        XCTAssertNotNil(post.meta)
+        XCTAssertNotNil(postFromData.meta)
+
         XCTAssertNotNil(post.categories)
+        XCTAssertNotNil(postFromData.categories)
+
         XCTAssertNotNil(post.tags)
+        XCTAssertNotNil(postFromData.tags)
+        
+        XCTAssertNotNil(postFromData.embeddedContent.author)
+        XCTAssertNotNil(postFromData.embeddedContent.featuredMedia)
     }
 
 }

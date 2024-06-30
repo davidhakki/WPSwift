@@ -10,7 +10,7 @@ import Foundation
 extension JSONEncoder {
     static func initialize() -> JSONEncoder {
         let encoder = JSONEncoder()
-        encoder.dateEncodingStrategy = .iso8601
+        encoder.dateEncodingStrategy = .formatted(.default)
         return encoder
     }
 }

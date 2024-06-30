@@ -29,32 +29,19 @@ extension Post {
     static var mock: Post {
         .init(
             id: 1234,
-            date: ISO8601DateFormatter().date(from: "2023-10-06T14:08:00Z"),
-            date_gmt: ISO8601DateFormatter().date(from: "2023-10-06T14:08:00Z"),
-            guid: RenderedContent(rendered: "unique-guid-here"),
-            modified: "2023-10-06T14:08:00",
-            modified_gmt: "2023-10-06T14:08:00",
-            slug: "sample-post-slug",
+            date: DateFormatter.default.date(from: "2023-10-06T14:08:00"),
+            modified: DateFormatter.default.date(from: "2023-10-06T14:08:00"),
             status: "publish",
-            type: "post",
-            link: "https://example.com/sample-post-slug",
             title: RenderedContent(rendered: "Sample Post Title"),
             content: RenderedContent(rendered: "<p>This is a mock post content.</p>"),
             excerpt: RenderedContent(rendered: "This is a mock post excerpt."),
             author: 1,
             featured_media: 5678,
             comment_status: "open",
-            ping_status: "closed",
-            sticky: false,
-            template: "default",
-            format: "standard",
             meta: ["custom_field": .string("custom value")],
             categories: [1, 2],
             tags: [3, 4],
-            password: "secretPassword",
-            permalink_template: "https://example.com/{slug}",
-            generated_slug: "generated-slug",
-            _links: ["self": [LinkDetails(href: "https://api.example.com/posts/1234")]]
+            embeddedContent: .mock
         )
     }
 }
@@ -87,22 +74,15 @@ extension PostToCreate {
         .init(
             title: RenderedContent(rendered: "Sample Post Title"),
             content: RenderedContent(rendered: "<p>This is a mock post content.</p>"),
-            date: ISO8601DateFormatter().date(from: "2023-10-06T14:08:00Z"),
-            date_gmt: ISO8601DateFormatter().date(from: "2023-10-06T14:08:00Z"),
-            slug: "sample-post-slug",
-            author: 1,
-            featured_media: 5678,
             format: "standard",
             sticky: false,
-            template: "default",
             excerpt: RenderedContent(rendered: "This is a mock post excerpt."),
             status: "publish",
             password: "secretPassword",
             comment_status: "open",
             ping_status: "closed",
             categories: [10, 20],
-            tags: [50, 60],
-            meta: ["custom_meta_key": .bool(true)]
+            tags: [50, 60]
         )
     }
 }
@@ -113,22 +93,15 @@ extension PostToUpdate {
             id: 1234,
             title: RenderedContent(rendered: "Sample Post Title"),
             content: RenderedContent(rendered: "<p>This is a mock post content.</p>"),
-            date: ISO8601DateFormatter().date(from: "2023-10-06T14:08:00Z"),
-            date_gmt: ISO8601DateFormatter().date(from: "2023-10-06T14:08:00Z"),
-            slug: "sample-post-slug",
-            author: 1,
-            featured_media: 5678,
             format: "standard",
             sticky: false,
-            template: "default",
             excerpt: RenderedContent(rendered: "This is a mock post excerpt."),
             status: "publish",
             password: "secretPassword",
             comment_status: "open",
             ping_status: "closed",
             categories: [12, 22],
-            tags: [52, 62],
-            meta: ["updated_meta_key": .double(1234.0)]
+            tags: [52, 62]
         )
     }
 }

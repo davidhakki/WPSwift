@@ -8,8 +8,8 @@
     "excerpt": {
         "rendered": "This is a mock post excerpt."
     },
-    "date": "2023-10-06T14:08:00Z",
-    "date_gmt": "2023-10-06T14:08:00Z",
+    "date": "2023-10-06T14:08:00",
+    "date_gmt": "2023-10-06T14:08:00",
     "slug": "sample-post-slug",
     "author": 1,
     "featured_media": 5678,

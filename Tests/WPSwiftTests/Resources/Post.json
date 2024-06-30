@@ -1,45 +1,62 @@
 {
-    "id": 1234,
-    "date": "2023-10-06T14:08:00Z",
-    "date_gmt": "2023-10-06T14:08:00Z",
-    "guid": {
-        "rendered": "unique-guid-here"
-    },
-    "modified": "2023-10-06T14:08:00",
-    "modified_gmt": "2023-10-06T14:08:00",
-    "slug": "sample-post-slug",
-    "status": "publish",
-    "type": "post",
-    "link": "https://example.com/sample-post-slug",
-    "title": {
-        "rendered": "Sample Post Title"
-    },
-    "content": {
-        "rendered": "<p>This is a mock post content.</p>"
-    },
-    "excerpt": {
-        "rendered": "This is a mock post excerpt."
-    },
-    "author": 1,
-    "featured_media": 5678,
-    "comment_status": "open",
-    "ping_status": "closed",
-    "sticky": false,
-    "template": "default",
-    "format": "standard",
-    "meta": {
-        "custom_field": "custom value"
-    },
-    "categories": [1, 2],
-    "tags": [3, 4],
-    "permalink_template": "https://example.com/{slug}",
-    "generated_slug": "generated-slug",
-    "password": "secretPassword",
-    "_links": {
-        "self": [
-            {
-                "href": "https://api.example.com/posts/1234"
+  "id": 1234,
+  "date_gmt": "2023-10-06T14:08:00",
+  "modified_gmt": "2023-10-06T14:08:00",
+  "status": "publish",
+  "title": {
+    "rendered": "Sample Post Title"
+  },
+  "content": {
+    "rendered": "<p>This is a mock post content.</p>"
+  },
+  "excerpt": {
+    "rendered": "This is a mock post excerpt."
+  },
+  "author": 1,
+  "featured_media": 5678,
+  "comment_status": "open",
+  "meta": {
+    "custom_field": "custom value"
+  },
+  "categories": [
+    1,
+    2
+  ],
+  "tags": [
+    3,
+    4
+  ],
+  "_embedded": {
+    "author": [
+      {
+        "id": 123,
+        "name": "Author Name",
+        "description": "Author Description"
+      }
+    ],
+    "wp:featuredmedia": [
+      {
+        "id": 123,
+        "title": {
+          "rendered": "Featured Media Title"
+        },
+        "caption": {
+          "rendered": "<p>Featured Media Caption</p>"
+        },
+        "alt_text": "Featured Media Alt Text",
+        "media_details": {
+          "width": 1024,
+          "height": 684,
+          "sizes": {
+            "thumbnail": {
+              "width": 150,
+              "height": 150,
+              "source_url": "https://example.com/wp-content/uploads/2024/06/7D5B29B3-CCFC-4E56-B838-81B48EBE9C24.jpg?quality=85&w=150&h=150&crop=1"
             }
-        ]
-    }
+          }
+        },
+        "source_url": "https://example.com/wp-content/uploads/2024/06/7D5B29B3-CCFC-4E56-B838-81B48EBE9C24.jpg?quality=85",
+      }
+    ]
+  }
 }

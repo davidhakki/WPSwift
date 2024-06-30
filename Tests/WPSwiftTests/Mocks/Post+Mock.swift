@@ -38,7 +38,6 @@ extension Post {
             author: 1,
             featured_media: 5678,
             comment_status: "open",
-            meta: ["custom_field": .string("custom value")],
             categories: [1, 2],
             tags: [3, 4],
             embeddedContent: .mock

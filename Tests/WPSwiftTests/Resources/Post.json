@@ -15,9 +15,6 @@
   "author": 1,
   "featured_media": 5678,
   "comment_status": "open",
-  "meta": {
-    "custom_field": "custom value"
-  },
   "categories": [
     1,
     2

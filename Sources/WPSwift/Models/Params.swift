@@ -18,7 +18,7 @@ extension [String: Any] {
             "page": page,
             "per_page": perPage,
             "order": order.rawValue,
-            "_embed": true
+            "_embed": ""
         ]
     }
 }

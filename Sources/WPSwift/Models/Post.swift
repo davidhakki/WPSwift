@@ -18,7 +18,6 @@ public struct Post: Decodable {
     public let author: Int
     public let featured_media: Int
     public let comment_status: String
-    public let meta: [String: AnyCodable]
     public let categories: [Int]
     public let tags: [Int]
     public let embeddedContent: EmbeddedContent
@@ -34,13 +33,12 @@ public struct Post: Decodable {
         case author
         case featured_media
         case comment_status
-        case meta
         case categories
         case tags
         case embeddedContent = "_embedded"
     }
     
-    public init(id: Int, date: Date? = nil, modified: Date? = nil, status: String, title: RenderedContent, content: RenderedContent, excerpt: RenderedContent, author: Int, featured_media: Int, comment_status: String, meta: [String: AnyCodable], categories: [Int], tags: [Int], embeddedContent: EmbeddedContent) {
+    public init(id: Int, date: Date? = nil, modified: Date? = nil, status: String, title: RenderedContent, content: RenderedContent, excerpt: RenderedContent, author: Int, featured_media: Int, comment_status: String, categories: [Int], tags: [Int], embeddedContent: EmbeddedContent) {
         self.id = id
         self.date = date
         self.modified = modified
@@ -51,7 +49,6 @@ public struct Post: Decodable {
         self.author = author
         self.featured_media = featured_media
         self.comment_status = comment_status
-        self.meta = meta
         self.categories = categories
         self.tags = tags
         self.embeddedContent = embeddedContent

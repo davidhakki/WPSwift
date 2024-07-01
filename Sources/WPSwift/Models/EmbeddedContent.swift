@@ -15,14 +15,16 @@ public struct EmbeddedContent: Decodable {
         _featuredMedia.first
     }
     public var tags: [Term] {
-        terms.filter { $0.taxonomy == .tag }
+        guard let terms = terms.first else { return [] }
+        return terms.filter { $0.taxonomy == .tag }
     }
     public var categories: [Term] {
-        terms.filter { $0.taxonomy == .category }
+        guard let terms = terms.first else { return [] }
+        return terms.filter { $0.taxonomy == .category }
     }
     private let _author: [Author]
     private let _featuredMedia: [FeaturedMedia]
-    private let terms: [Term]
+    private let terms: [[Term]]
 
     public init(author: Author? = nil, featuredMedia: FeaturedMedia? = nil, tags: [Term] = [], categories: [Term] = []) {
         _author = if let author {
@@ -38,7 +40,7 @@ public struct EmbeddedContent: Decodable {
         var terms: [Term] = []
         terms.append(contentsOf: tags)
         terms.append(contentsOf: categories)
-        self.terms = terms
+        self.terms = [terms]
     }
     
     private enum CodingKeys: String, CodingKey {

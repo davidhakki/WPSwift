@@ -86,8 +86,8 @@ final class CategoriessRepositoryTests: XCTestCase {
         XCTAssertEqual(thumbnail.sourceURL, thumbnailFromData.sourceURL)
 
         // Assertions for category
-        let category = post.embeddedContent.category!
-        let categoryFromData = postFromData.embeddedContent.category!
+        let category = post.embeddedContent.categories[0]
+        let categoryFromData = postFromData.embeddedContent.categories[0]
 
         XCTAssertEqual(category.id, categoryFromData.id)
         XCTAssertEqual(category.link, categoryFromData.link)
@@ -95,8 +95,8 @@ final class CategoriessRepositoryTests: XCTestCase {
         XCTAssertEqual(category.taxonomy, categoryFromData.taxonomy)
 
         //Assertions for tag
-        let tag = post.embeddedContent.tag!
-        let tagFromData = postFromData.embeddedContent.tag!
+        let tag = post.embeddedContent.tags[0]
+        let tagFromData = postFromData.embeddedContent.tags[0]
 
         XCTAssertEqual(tag.id, tagFromData.id)
         XCTAssertEqual(tag.link, tagFromData.link)
@@ -164,8 +164,8 @@ final class CategoriessRepositoryTests: XCTestCase {
         XCTAssertEqual(thumbnail.sourceURL, thumbnailFromData.sourceURL)
 
         // Assertions for category
-        let category = post.embeddedContent.category!
-        let categoryFromData = postFromData.embeddedContent.category!
+        let category = post.embeddedContent.categories[0]
+        let categoryFromData = postFromData.embeddedContent.categories[0]
 
         XCTAssertEqual(category.id, categoryFromData.id)
         XCTAssertEqual(category.link, categoryFromData.link)
@@ -173,8 +173,8 @@ final class CategoriessRepositoryTests: XCTestCase {
         XCTAssertEqual(category.taxonomy, categoryFromData.taxonomy)
 
         //Assertions for tag
-        let tag = post.embeddedContent.tag!
-        let tagFromData = postFromData.embeddedContent.tag!
+        let tag = post.embeddedContent.tags[0]
+        let tagFromData = postFromData.embeddedContent.tags[0]
 
         XCTAssertEqual(tag.id, tagFromData.id)
         XCTAssertEqual(tag.link, tagFromData.link)
@@ -210,8 +210,8 @@ final class CategoriessRepositoryTests: XCTestCase {
         
         XCTAssertNotNil(postFromData.embeddedContent.author)
         XCTAssertNotNil(postFromData.embeddedContent.featuredMedia)
-        XCTAssertNotNil(postFromData.embeddedContent.tag)
-        XCTAssertNotNil(postFromData.embeddedContent.category)
+        XCTAssertFalse(postFromData.embeddedContent.tags.isEmpty)
+        XCTAssertFalse(postFromData.embeddedContent.categories.isEmpty)
     }
 
     func testUpdatingPost() async throws {
@@ -243,8 +243,8 @@ final class CategoriessRepositoryTests: XCTestCase {
         
         XCTAssertNotNil(postFromData.embeddedContent.author)
         XCTAssertNotNil(postFromData.embeddedContent.featuredMedia)
-        XCTAssertNotNil(postFromData.embeddedContent.tag)
-        XCTAssertNotNil(postFromData.embeddedContent.category)
+        XCTAssertFalse(postFromData.embeddedContent.tags.isEmpty)
+        XCTAssertFalse(postFromData.embeddedContent.categories.isEmpty)
     }
 
 }

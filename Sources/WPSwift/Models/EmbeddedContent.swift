@@ -14,17 +14,17 @@ public struct EmbeddedContent: Decodable {
     public var featuredMedia: FeaturedMedia? {
         _featuredMedia.first
     }
-    public var tag: Term? {
-        terms.first { $0.taxonomy == .tag }
+    public var tags: [Term] {
+        terms.filter { $0.taxonomy == .tag }
     }
-    public var category: Term? {
-        terms.first { $0.taxonomy == .category }
+    public var categories: [Term] {
+        terms.filter { $0.taxonomy == .category }
     }
     private let _author: [Author]
     private let _featuredMedia: [FeaturedMedia]
     private let terms: [Term]
 
-    public init(author: Author? = nil, featuredMedia: FeaturedMedia? = nil, tag: Term? = nil, category: Term? = nil) {
+    public init(author: Author? = nil, featuredMedia: FeaturedMedia? = nil, tags: [Term] = [], categories: [Term] = []) {
         _author = if let author {
             [author]
         } else {
@@ -36,12 +36,8 @@ public struct EmbeddedContent: Decodable {
             []
         }
         var terms: [Term] = []
-        if let tag {
-            terms.append(tag)
-        }
-        if let category {
-            terms.append(category)
-        }
+        terms.append(contentsOf: tags)
+        terms.append(contentsOf: categories)
         self.terms = terms
     }
     

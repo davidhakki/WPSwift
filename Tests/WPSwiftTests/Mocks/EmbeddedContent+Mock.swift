@@ -13,18 +13,22 @@ extension EmbeddedContent {
         .init(
             author: .mock,
             featuredMedia: .mock,
-            tag: .init(
-                id: 1, 
-                link: "https://example.com/some-category",
-                name: "Some Category",
-                taxonomy: .category
-            ),
-            category: .init(
-                id: 2,
-                link: "https://example.com/some-tag",
-                name: "Some Tag",
-                taxonomy: .tag
-            )
+            tags: [
+                .init(
+                    id: 1,
+                    link: "https://example.com/some-category",
+                    name: "Some Category",
+                    taxonomy: .category
+                )
+            ],
+            categories: [
+                .init(
+                    id: 2,
+                    link: "https://example.com/some-tag",
+                    name: "Some Tag",
+                    taxonomy: .tag
+                )
+            ]
         )
     }
 }

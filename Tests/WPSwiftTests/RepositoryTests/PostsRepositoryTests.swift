@@ -1,6 +1,6 @@
 //
-//  PostsRepositoryTests.swift
-//  
+//  CategoriessRepositoryTests.swift
+//
 //
 //  Created by Ulaş Sancak on 7.10.2023.
 //
@@ -8,7 +8,7 @@
 import XCTest
 @testable import WPSwift
 
-final class PostsRepositoryTests: XCTestCase {
+final class CategoriessRepositoryTests: XCTestCase {
     
     override func setUpWithError() throws {
         WPSwift.initialize(route: "https://www.example.com/wp-json", namespace: "wp/v2")
@@ -20,7 +20,7 @@ final class PostsRepositoryTests: XCTestCase {
         WPSwift.sessionConfiguration.protocolClasses = nil
     }
 
-    func testGetPosts() async throws {
+    func testGetCategoriess() async throws {
         MockedURLProtocol.observer = { request -> (URLResponse?, Data?) in
             let response = HTTPURLResponse(url: URL(string: WPEndpoint.Posts.posts.path)!, statusCode: 200, httpVersion: nil, headerFields: nil)
             return (response, try [Post].mockData)

@@ -21,4 +21,18 @@ enum WPEndpoint {
             }
         }
     }
+    
+    enum Categories {
+        case categories
+        case category(id: Int)
+
+        var path: String {
+            switch self {
+            case .categories:
+                return "/categories"
+            case .category(let id):
+                return "/categoriy/\(id)"
+            }
+        }
+    }
 }

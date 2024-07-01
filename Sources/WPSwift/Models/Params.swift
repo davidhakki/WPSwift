@@ -18,7 +18,17 @@ extension [String: Any] {
             "page": page,
             "per_page": perPage,
             "order": order.rawValue,
-            "_embed": ""
+            "_embed": "",
+            "_fields":"id,date_gmt,modified_gmt,status,title,content.rendered,excerpt,author,featured_media,comment_status,categories,tags,_links.author,_links.wp:featuredmedia,_links.wp:term"
+        ]
+    }
+    
+    static func createParamsForCategories(page: Int = 1, perPage: Int = 10, order: OrderType = .descending) -> [String: Any] {
+        [
+            "page": page,
+            "per_page": perPage,
+            "order": order.rawValue,
+            "_fields":"id,count,description,link,name,parent"
         ]
     }
 }

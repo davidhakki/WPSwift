@@ -12,7 +12,19 @@ extension EmbeddedContent {
     static var mock: EmbeddedContent {
         .init(
             author: .mock,
-            featuredMedia: .mock
+            featuredMedia: .mock,
+            tag: .init(
+                id: 1, 
+                link: "https://example.com/some-category",
+                name: "Some Category",
+                taxonomy: .category
+            ),
+            category: .init(
+                id: 2,
+                link: "https://example.com/some-tag",
+                name: "Some Tag",
+                taxonomy: .tag
+            )
         )
     }
 }

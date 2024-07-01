@@ -17,6 +17,16 @@ public struct FeaturedMedia: Codable {
     public var thumbnailURL: String? {
         mediaDetails.sizes["thumbnail"]?.sourceURL
     }
+
+    public init(id: Int, title: RenderedContent, caption: RenderedContent, altText: String, mediaDetails: MediaDetails, sourceURL: String) {
+        self.id = id
+        self.title = title
+        self.caption = caption
+        self.altText = altText
+        self.mediaDetails = mediaDetails
+        self.sourceURL = sourceURL
+    }
+
     enum CodingKeys: String, CodingKey {
         case id, title
         case caption
@@ -31,6 +41,12 @@ public struct MediaDetails: Codable {
     public let height: Int
     public let sizes: [String: Size]
 
+    public init(width: Int = 0, height: Int = 0, sizes: [String: Size] = [:]) {
+        self.width = width
+        self.height = height
+        self.sizes = sizes
+    }
+
     enum CodingKeys: String, CodingKey {
         case width, height, sizes
     }
@@ -41,6 +57,12 @@ public struct Size: Codable {
     public let width: Int
     public let height: Int
     public let sourceURL: String
+
+    public init(width: Int, height: Int, sourceURL: String) {
+        self.width = width
+        self.height = height
+        self.sourceURL = sourceURL
+    }
 
     enum CodingKeys: String, CodingKey {
         case width, height

@@ -11,8 +11,8 @@ import Resting
 public struct PostsRepository {
     public init() {}
     
-    public func getPostsClient(page: Int = 1, perPage: Int = 10, order: OrderType = .descending) throws -> WPClient<EmptyModel, [Post]> {
-        try .init(.init(endpoint: WPEndpoint.Posts.posts.path, parameters: .createParamsForPosts(page: page, perPage: perPage, order: order)))
+    public func getPostsClient(page: Int = 1, perPage: Int = 10, order: OrderType = .descending, categories: [Int] = [], categoriesToExclude: [Int] = [], tags: [Int] = [], tagsToExclude: [Int] = []) throws -> WPClient<EmptyModel, [Post]> {
+        try .init(.init(endpoint: WPEndpoint.Posts.posts.path, parameters: .createParamsForPosts(page: page, perPage: perPage, order: order, categories: categories, categoriesToExclude: categories, tags: tags, tagsToExclude: tagsToExclude)))
     }
     
     public func getPostClient(by id: Int) throws -> WPClient<EmptyModel, Post> {

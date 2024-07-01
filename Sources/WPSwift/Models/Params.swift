@@ -13,13 +13,17 @@ public enum OrderType: String, Decodable {
 }
 
 extension [String: Any] {
-    static func createParamsForPosts(page: Int = 1, perPage: Int = 10, order: OrderType = .descending) -> [String: Any] {
+    static func createParamsForPosts(page: Int = 1, perPage: Int = 10, order: OrderType = .descending, categories: [Int] = [], categoriesToExclude: [Int] = [], tags: [Int] = [], tagsToExclude: [Int] = []) -> [String: Any] {
         [
             "page": page,
             "per_page": perPage,
             "order": order.rawValue,
             "_embed": "",
-            "_fields":"id,date_gmt,modified_gmt,status,title,content.rendered,excerpt,author,featured_media,comment_status,categories,tags,_links.author,_links.wp:featuredmedia,_links.wp:term"
+            "_fields":"id,date_gmt,modified_gmt,status,title,content.rendered,excerpt,author,featured_media,comment_status,categories,tags,_links.author,_links.wp:featuredmedia,_links.wp:term",
+            "categories": categories.map { "\($0)" }.joined(separator: ","),
+            "categories_exclude": categoriesToExclude.map { "\($0)" }.joined(separator: ","),
+            "tags": tags.map { "\($0)" }.joined(separator: ","),
+            "tags_exclude": tagsToExclude.map { "\($0)" }.joined(separator: ",")
         ]
     }
     

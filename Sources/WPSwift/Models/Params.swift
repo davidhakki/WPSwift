@@ -20,7 +20,7 @@ extension [String: Any] {
         let tagsToExclude = tagsToExclude.map { "\($0)" }.joined(separator: ",")
         var params: [String: Any] = [
             "_embed": "",
-            "_fields":"id,date_gmt,modified_gmt,status,title,content.rendered,excerpt,author,featured_media,comment_status,categories,tags,_links.author,_links.wp:featuredmedia,_links.wp:term"
+            "_fields":"id,date_gmt,modified_gmt,status,title,content.rendered,excerpt,author,featured_media,comment_status,categories,tags,_links.author,_links.wp:featuredmedia"
         ]
         if !categories.isEmpty {
             params["categories"] = categories
@@ -47,7 +47,7 @@ extension [String: Any] {
             "per_page": perPage,
             "order": order.rawValue,
             "_embed": "",
-            "_fields":"id,date_gmt,modified_gmt,status,title,content.rendered,excerpt,author,featured_media,comment_status,categories,tags,_links.author,_links.wp:featuredmedia,_links.wp:term"
+            "_fields":"id,date_gmt,modified_gmt,status,title,content.rendered,excerpt,author,featured_media,comment_status,categories,tags,_links.author,_links.wp:featuredmedia"
         ]
         if !categories.isEmpty {
             params["categories"] = categories

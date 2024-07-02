@@ -16,7 +16,7 @@ public struct PostsRepository {
     }
     
     public func getPostClient(by id: Int) throws -> WPClient<EmptyModel, Post> {
-        try .init(.init(endpoint: WPEndpoint.Posts.post(id: id).path, parameters: nil))
+        try .init(.init(endpoint: WPEndpoint.Posts.post(id: id).path, parameters: .createParamsForPost()))
     }
 
     public func createPostClient(by post: PostToCreate) throws -> WPClient<PostToCreate, Post> {

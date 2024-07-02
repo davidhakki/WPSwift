@@ -16,7 +16,7 @@ public struct CategoriesRepository {
     }
     
     public func getCategoryClient(by id: Int) throws -> WPClient<EmptyModel, PostCategory> {
-        try .init(.init(endpoint: WPEndpoint.Categories.category(id: id).path, parameters: nil))
+        try .init(.init(endpoint: WPEndpoint.Categories.category(id: id).path, parameters: .createParamsForCategory()))
     }
 
     public func createCategoryClient(by category: PostCategoryToCreate) throws -> WPClient<PostCategoryToCreate, PostCategory> {

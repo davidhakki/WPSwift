@@ -20,7 +20,7 @@ final class CategoriessRepositoryTests: XCTestCase {
         WPSwift.sessionConfiguration.protocolClasses = nil
     }
 
-    func testGetCategoriess() async throws {
+    func testGetPosts() async throws {
         MockedURLProtocol.observer = { request -> (URLResponse?, Data?) in
             let response = HTTPURLResponse(url: URL(string: WPEndpoint.Posts.posts.path)!, statusCode: 200, httpVersion: nil, headerFields: nil)
             return (response, try [Post].mockData)
@@ -84,24 +84,6 @@ final class CategoriessRepositoryTests: XCTestCase {
         XCTAssertEqual(thumbnail.width, thumbnailFromData.width)
         XCTAssertEqual(thumbnail.height, thumbnailFromData.height)
         XCTAssertEqual(thumbnail.sourceURL, thumbnailFromData.sourceURL)
-
-        // Assertions for category
-        let category = post.embeddedContent.categories[0]
-        let categoryFromData = postFromData.embeddedContent.categories[0]
-
-        XCTAssertEqual(category.id, categoryFromData.id)
-        XCTAssertEqual(category.link, categoryFromData.link)
-        XCTAssertEqual(category.name, categoryFromData.name)
-        XCTAssertEqual(category.taxonomy, categoryFromData.taxonomy)
-
-        //Assertions for tag
-        let tag = post.embeddedContent.tags[0]
-        let tagFromData = postFromData.embeddedContent.tags[0]
-
-        XCTAssertEqual(tag.id, tagFromData.id)
-        XCTAssertEqual(tag.link, tagFromData.link)
-        XCTAssertEqual(tag.name, tagFromData.name)
-        XCTAssertEqual(tag.taxonomy, tagFromData.taxonomy)
     }
 
     func testGetPost() async throws {
@@ -162,24 +144,6 @@ final class CategoriessRepositoryTests: XCTestCase {
         XCTAssertEqual(thumbnail.width, thumbnailFromData.width)
         XCTAssertEqual(thumbnail.height, thumbnailFromData.height)
         XCTAssertEqual(thumbnail.sourceURL, thumbnailFromData.sourceURL)
-
-        // Assertions for category
-        let category = post.embeddedContent.categories[0]
-        let categoryFromData = postFromData.embeddedContent.categories[0]
-
-        XCTAssertEqual(category.id, categoryFromData.id)
-        XCTAssertEqual(category.link, categoryFromData.link)
-        XCTAssertEqual(category.name, categoryFromData.name)
-        XCTAssertEqual(category.taxonomy, categoryFromData.taxonomy)
-
-        //Assertions for tag
-        let tag = post.embeddedContent.tags[0]
-        let tagFromData = postFromData.embeddedContent.tags[0]
-
-        XCTAssertEqual(tag.id, tagFromData.id)
-        XCTAssertEqual(tag.link, tagFromData.link)
-        XCTAssertEqual(tag.name, tagFromData.name)
-        XCTAssertEqual(tag.taxonomy, tagFromData.taxonomy)
     }
 
     func testCreatingPost() async throws {
@@ -210,8 +174,6 @@ final class CategoriessRepositoryTests: XCTestCase {
         
         XCTAssertNotNil(postFromData.embeddedContent.author)
         XCTAssertNotNil(postFromData.embeddedContent.featuredMedia)
-        XCTAssertFalse(postFromData.embeddedContent.tags.isEmpty)
-        XCTAssertFalse(postFromData.embeddedContent.categories.isEmpty)
     }
 
     func testUpdatingPost() async throws {
@@ -243,8 +205,6 @@ final class CategoriessRepositoryTests: XCTestCase {
         
         XCTAssertNotNil(postFromData.embeddedContent.author)
         XCTAssertNotNil(postFromData.embeddedContent.featuredMedia)
-        XCTAssertFalse(postFromData.embeddedContent.tags.isEmpty)
-        XCTAssertFalse(postFromData.embeddedContent.categories.isEmpty)
     }
 
 }

@@ -69,6 +69,7 @@ extension [String: Any] {
             "page": page,
             "per_page": perPage,
             "order": order.rawValue,
+            "hide_empty": 1,
             "_fields":"id,count,description,link,name,parent"
         ]
     }

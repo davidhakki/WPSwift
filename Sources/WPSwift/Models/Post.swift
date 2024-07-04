@@ -20,6 +20,7 @@ public struct Post: Decodable {
     public let comment_status: String
     public let categories: [Int]
     public let tags: [Int]
+    public let link: String
     public let embeddedContent: EmbeddedContent
     
     private enum CodingKeys: String, CodingKey {
@@ -35,10 +36,11 @@ public struct Post: Decodable {
         case comment_status
         case categories
         case tags
+        case link
         case embeddedContent = "_embedded"
     }
     
-    public init(id: Int, date: Date? = nil, modified: Date? = nil, status: String, title: RenderedContent, content: RenderedContent, excerpt: RenderedContent, author: Int, featured_media: Int, comment_status: String, categories: [Int], tags: [Int], embeddedContent: EmbeddedContent) {
+    public init(id: Int, date: Date? = nil, modified: Date? = nil, status: String, title: RenderedContent, content: RenderedContent, excerpt: RenderedContent, author: Int, featured_media: Int, comment_status: String, categories: [Int], tags: [Int], link: String, embeddedContent: EmbeddedContent) {
         self.id = id
         self.date = date
         self.modified = modified
@@ -51,6 +53,7 @@ public struct Post: Decodable {
         self.comment_status = comment_status
         self.categories = categories
         self.tags = tags
+        self.link = link
         self.embeddedContent = embeddedContent
     }
 }

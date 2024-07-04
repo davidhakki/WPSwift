@@ -40,6 +40,7 @@ extension Post {
             comment_status: "open",
             categories: [1, 2],
             tags: [3, 4],
+            link: "https://example.com/1234",
             embeddedContent: .mock
         )
     }

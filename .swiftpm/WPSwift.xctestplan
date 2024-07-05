@@ -26,6 +26,13 @@
         "identifier" : "WPSwiftTests",
         "name" : "WPSwiftTests"
       }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:",
+        "identifier" : "LocalizationTests",
+        "name" : "LocalizationTests"
+      }
     }
   ],
   "version" : 1

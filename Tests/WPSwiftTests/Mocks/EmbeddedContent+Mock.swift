@@ -15,5 +15,9 @@ extension EmbeddedContent {
             featuredMedia: .mock
         )
     }
+    
+    static var mockWithNoEmbedded: EmbeddedContent {
+        .init()
+    }
 }
 

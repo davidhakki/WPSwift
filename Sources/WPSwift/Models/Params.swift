@@ -63,6 +63,16 @@ extension [String: Any] {
         }
         return params
     }
+    
+    static func createParamsForSearchPosts(term: String, page: Int = 1, perPage: Int = 10) -> [String: Any] {
+        [
+            "search": term,
+            "page": page,
+            "per_page": perPage,
+            "_embed": "",
+            "_fields":"id,date_gmt,modified_gmt,status,title,content.rendered,excerpt,author,featured_media,comment_status,categories,tags,link,_links.author,_links.wp:featuredmedia"
+        ]
+    }
 
     static func createParamsForCategories(page: Int = 1, perPage: Int = 100, order: OrderType = .descending) -> [String: Any] {
         [

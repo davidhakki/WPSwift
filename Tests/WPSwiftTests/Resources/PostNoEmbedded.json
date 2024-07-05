@@ -25,36 +25,5 @@
     ],
     "link": "https://example.com/1234",
     "_embedded": {
-        "author": [
-            {
-                "id": 123,
-                "name": "Author Name",
-                "description": "Author Description"
-            }
-        ],
-        "wp:featuredmedia": [
-            {
-                "id": 123,
-                "title": {
-                    "rendered": "Featured Media Title"
-                },
-                "caption": {
-                    "rendered": "<p>Featured Media Caption</p>"
-                },
-                "alt_text": "Featured Media Alt Text",
-                "media_details": {
-                    "width": 1024,
-                    "height": 684,
-                    "sizes": {
-                        "thumbnail": {
-                            "width": 150,
-                            "height": 150,
-                            "source_url": "https://example.com/wp-content/uploads/2024/06/7D5B29B3-CCFC-4E56-B838-81B48EBE9C24.jpg?quality=85&w=150&h=150&crop=1"
-                        }
-                    }
-                },
-                "source_url": "https://example.com/wp-content/uploads/2024/06/7D5B29B3-CCFC-4E56-B838-81B48EBE9C24.jpg?quality=85",
-            }
-        ]
     }
 }

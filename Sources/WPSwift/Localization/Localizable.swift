@@ -58,9 +58,5 @@ extension Localizable {
     var localized: String {
         NSLocalizedString(rawValue, bundle: Bundle.module, comment: "")
     }
-
-    func localized(_ args: CVarArg...) -> String {
-        String(format: localized, args)
-    }
 }
 

@@ -56,22 +56,6 @@
                     },
                     "source_url": "https://example.com/wp-content/uploads/2024/06/7D5B29B3-CCFC-4E56-B838-81B48EBE9C24.jpg?quality=85",
                 }
-            ],
-            "wp:term": [
-                [
-                    {
-                        "id": 1,
-                        "link": "https://example.com/some-category",
-                        "name": "Some Category",
-                        "taxonomy": "category"
-                    },
-                    {
-                        "id": 2,
-                        "link": "https://example.com/some-tag",
-                        "name": "Some Tag",
-                        "taxonomy": "post_tag"
-                    }
-                ]
             ]
         }
     }

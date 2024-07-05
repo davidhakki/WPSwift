@@ -11,13 +11,16 @@ enum WPEndpoint {
     enum Posts {
         case posts
         case post(id: Int)
+        case search
 
         var path: String {
             switch self {
             case .posts:
-                return "/posts"
+                "/posts"
             case .post(let id):
-                return "/posts/\(id)"
+                "/posts/\(id)"
+            case .search:
+                "/search"
             }
         }
     }
@@ -29,9 +32,9 @@ enum WPEndpoint {
         var path: String {
             switch self {
             case .categories:
-                return "/categories"
+                "/categories"
             case .category(let id):
-                return "/categoriy/\(id)"
+                "/categoriy/\(id)"
             }
         }
     }

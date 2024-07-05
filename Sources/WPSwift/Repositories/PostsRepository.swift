@@ -15,7 +15,7 @@ public struct PostsRepository {
         try .init(.init(endpoint: WPEndpoint.Posts.posts.path, parameters: .createParamsForPosts(page: page, perPage: perPage, order: order, categories: categories, categoriesToExclude: categoriesToExclude, tags: tags, tagsToExclude: tagsToExclude)))
     }
     
-    public func getSearchPostsClient(term: String, page: Int = 1, perPage: Int = 10) throws -> WPClient<EmptyModel, [Post]> {
+    public func getSearchPostsClient(term: String, page: Int = 1, perPage: Int = 10) throws -> WPClient<EmptyModel, [SimplePost]> {
         try .init(.init(endpoint: WPEndpoint.Posts.search.path, parameters: .createParamsForSearchPosts(term: term, page: page, perPage: perPage)))
     }
     

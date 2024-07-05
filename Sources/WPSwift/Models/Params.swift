@@ -69,8 +69,7 @@ extension [String: Any] {
             "search": term,
             "page": page,
             "per_page": perPage,
-            "_embed": "",
-            "_fields":"id,date_gmt,modified_gmt,status,title,content.rendered,excerpt,author,featured_media,comment_status,categories,tags,link,_links.author,_links.wp:featuredmedia"
+            "_fields":"id,title,url"
         ]
     }
 

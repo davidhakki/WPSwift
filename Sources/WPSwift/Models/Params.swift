@@ -69,6 +69,7 @@ extension [String: Any] {
             "search": term,
             "page": page,
             "per_page": perPage,
+            "subtype": "post",
             "_fields":"id,title,url"
         ]
     }

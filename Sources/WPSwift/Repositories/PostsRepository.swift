@@ -11,8 +11,8 @@ import Resting
 public struct PostsRepository {
     public init() {}
     
-    public func getPostsClient(page: Int = 1, perPage: Int = 10, order: OrderType = .descending, categories: [Int] = [], categoriesToExclude: [Int] = [], tags: [Int] = [], tagsToExclude: [Int] = []) throws -> WPClient<EmptyModel, [Post]> {
-        try .init(.init(endpoint: WPEndpoint.Posts.posts.path, parameters: .createParamsForPosts(page: page, perPage: perPage, order: order, categories: categories, categoriesToExclude: categoriesToExclude, tags: tags, tagsToExclude: tagsToExclude)))
+    public func getPostsClient(page: Int = 1, perPage: Int = 10, order: OrderType = .descending, categories: [Int]? = nil, categoriesToExclude: [Int]? = nil, tags: [Int]? = nil, tagsToExclude: [Int]? = nil, include: [Int]? = nil) throws -> WPClient<EmptyModel, [Post]> {
+        try .init(.init(endpoint: WPEndpoint.Posts.posts.path, parameters: .createParamsForPosts(page: page, perPage: perPage, order: order, categories: categories, categoriesToExclude: categoriesToExclude, tags: tags, tagsToExclude: tagsToExclude, include: include)))
     }
     
     public func getSearchPostsClient(term: String, page: Int = 1, perPage: Int = 10) throws -> WPClient<EmptyModel, [SimplePost]> {

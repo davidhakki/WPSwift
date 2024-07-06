@@ -37,11 +37,11 @@ extension [String: Any] {
         return params
     }
     
-    static func createParamsForPosts(page: Int = 1, perPage: Int = 10, order: OrderType = .descending, categories: [Int] = [], categoriesToExclude: [Int] = [], tags: [Int] = [], tagsToExclude: [Int] = []) -> [String: Any] {
-        let categories = categories.map { "\($0)" }.joined(separator: ",")
-        let categoriesToExclude = categoriesToExclude.map { "\($0)" }.joined(separator: ",")
-        let tags = tags.map { "\($0)" }.joined(separator: ",")
-        let tagsToExclude = tagsToExclude.map { "\($0)" }.joined(separator: ",")
+    static func createParamsForPosts(page: Int = 1, perPage: Int = 10, order: OrderType = .descending, categories: [Int]? = nil, categoriesToExclude: [Int]? = nil, tags: [Int]? = nil, tagsToExclude: [Int]? = nil, include: [Int]? = nil) -> [String: Any] {
+        let categories = categories?.map { "\($0)" }.joined(separator: ",")
+        let categoriesToExclude = categoriesToExclude?.map { "\($0)" }.joined(separator: ",")
+        let tags = tags?.map { "\($0)" }.joined(separator: ",")
+        let tagsToExclude = tagsToExclude?.map { "\($0)" }.joined(separator: ",")
         var params: [String: Any] = [
             "page": page,
             "per_page": perPage,
@@ -49,17 +49,20 @@ extension [String: Any] {
             "_embed": "",
             "_fields":"id,date_gmt,modified_gmt,status,title,content.rendered,excerpt,author,featured_media,comment_status,categories,tags,link,_links.author,_links.wp:featuredmedia"
         ]
-        if !categories.isEmpty {
+        if let categories, !categories.isEmpty {
             params["categories"] = categories
         }
-        if !categoriesToExclude.isEmpty {
+        if let categoriesToExclude, !categoriesToExclude.isEmpty {
             params["categories_exclude"] = categoriesToExclude
         }
-        if !tags.isEmpty {
+        if let tags, !tags.isEmpty {
             params["tags"] = tags
         }
-        if !tagsToExclude.isEmpty {
+        if let tagsToExclude, !tagsToExclude.isEmpty {
             params["tags_exclude"] = tagsToExclude
+        }
+        if let include, !include.isEmpty {
+            params["include"] = include
         }
         return params
     }

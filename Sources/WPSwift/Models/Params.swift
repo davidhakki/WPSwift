@@ -42,6 +42,7 @@ extension [String: Any] {
         let categoriesToExclude = categoriesToExclude?.map { "\($0)" }.joined(separator: ",")
         let tags = tags?.map { "\($0)" }.joined(separator: ",")
         let tagsToExclude = tagsToExclude?.map { "\($0)" }.joined(separator: ",")
+        let include = include?.map { "\($0)" }.joined(separator: ",")
         var params: [String: Any] = [
             "page": page,
             "per_page": perPage,

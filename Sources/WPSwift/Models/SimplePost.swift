@@ -56,6 +56,24 @@ public struct Post: Decodable {
         self.link = link
         self.embeddedContent = embeddedContent
     }
+    
+    public init(from decoder: any Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.id = try container.decode(Int.self, forKey: .id)
+        self.date = try container.decodeIfPresent(Date.self, forKey: .date)
+        self.modified = try container.decodeIfPresent(Date.self, forKey: .modified)
+        self.status = try container.decodeIfPresent(String.self, forKey: .status)
+        self.title = try container.decode(RenderedContent.self, forKey: .title)
+        self.content = try container.decode(RenderedContent.self, forKey: .content)
+        self.excerpt = try container.decode(RenderedContent.self, forKey: .excerpt)
+        self.author = try container.decode(Int.self, forKey: .author)
+        self.featured_media = try container.decode(Int.self, forKey: .featured_media)
+        self.comment_status = try container.decode(String.self, forKey: .comment_status)
+        self.categories = try container.decodeIfPresent([Int].self, forKey: .categories) ?? []
+        self.tags = try container.decode([Int].self, forKey: .tags)
+        self.link = try container.decode(String.self, forKey: .link)
+        self.embeddedContent = try container.decode(EmbeddedContent.self, forKey: .embeddedContent)
+    }
 }
 
 public struct PostToCreate: Encodable {

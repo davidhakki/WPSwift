@@ -32,14 +32,14 @@ final class APIClientTests: XCTestCase {
 
     func testURL() throws {
         WPSwift.initialize(route: "https://www.example.com/wp-json", namespace: "wp/v2")
-        let url = try String.initialize(with: "")
+        let url = try String.initialize(with: .endpoint(""))
         XCTAssertEqual(url, "https://www.example.com/wp-json/wp/v2/")
     }
 
     func testURLWithFailure() throws {
         WPSwift.initialize(route: "http://\u{FFFD}\u{FFFE}", namespace: "wp/v2")
         do {
-            _ = try String.initialize(with: "")
+            _ = try String.initialize(with: .endpoint(""))
             XCTAssert(false, "URL initialize should have been failed.")
         } catch NetworkError.urlMalformed {
             XCTAssertEqual(NetworkError.urlMalformed.errorDescription, "URL is malformed.", "Network error message does not match.")

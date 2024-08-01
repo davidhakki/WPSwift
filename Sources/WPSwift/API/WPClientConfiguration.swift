@@ -13,15 +13,19 @@ struct WPClientConfiguration {
         case object([String: Any])
         case model(Encodable)
     }
-
-    let endpoint: String
+    
+    enum EndpointType {
+        case base(baseURL: String, endpoint: String)
+        case endpoint(String)
+    }
+    let endpointType: EndpointType
     let method: HTTPMethod
     let encoding: HTTPEncoding
     let headers: [String: String]?
     let parameterType: ParameterType?
 
     init(endpoint: String, method: HTTPMethod = .get, parameters: [String : Any]?, encoding: HTTPEncoding = .urlEncoded, headers: [String: String]? = nil) {
-        self.endpoint = endpoint
+        self.endpointType = .endpoint(endpoint)
         self.method = method
         self.encoding = encoding
         if let parameters {
@@ -33,7 +37,31 @@ struct WPClientConfiguration {
     }
 
     init(endpoint: String, method: HTTPMethod = .post, requestModel: Encodable?, encoding: HTTPEncoding = .json, headers: [String: String]? = nil) {
-        self.endpoint = endpoint
+        self.endpointType = .endpoint(endpoint)
+        self.method = method
+        self.encoding = encoding
+        if let requestModel {
+            self.parameterType = .model(requestModel)
+        } else {
+            self.parameterType = nil
+        }
+        self.headers = headers
+    }
+    
+    init(baseURL: String, endpoint: String, method: HTTPMethod = .get, parameters: [String : Any]?, encoding: HTTPEncoding = .urlEncoded, headers: [String: String]? = nil) {
+        self.endpointType = .base(baseURL: baseURL, endpoint: endpoint)
+        self.method = method
+        self.encoding = encoding
+        if let parameters {
+            self.parameterType = .object(parameters)
+        } else {
+            self.parameterType = nil
+        }
+        self.headers = headers
+    }
+
+    init(baseURL: String, endpoint: String, method: HTTPMethod = .post, requestModel: Encodable?, encoding: HTTPEncoding = .json, headers: [String: String]? = nil) {
+        self.endpointType = .base(baseURL: baseURL, endpoint: endpoint)
         self.method = method
         self.encoding = encoding
         if let requestModel {

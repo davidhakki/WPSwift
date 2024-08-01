@@ -35,21 +35,21 @@ public struct WPClient<RequestModel: Encodable, Response: Decodable> {
         switch configuration.parameterType {
         case .object(let dictionary):
             requestConfig = RequestConfiguration(
-                urlString: try .initialize(with: configuration.endpoint),
+                urlString: try .initialize(with: configuration.endpointType),
                 method: configuration.method,
                 parameters: dictionary,
                 headers: configuration.headers, encoding: configuration.encoding
             )
         case .model(let encodable):
             requestConfig = RequestConfiguration(
-                urlString: try .initialize(with: configuration.endpoint),
+                urlString: try .initialize(with: configuration.endpointType),
                 method: configuration.method,
                 body: try JSONEncoder.initialize().encode(encodable),
                 headers: configuration.headers, encoding: configuration.encoding
             )
         case .none:
             requestConfig = RequestConfiguration(
-                urlString: try .initialize(with: configuration.endpoint),
+                urlString: try .initialize(with: configuration.endpointType),
                 method: configuration.method,
                 headers: configuration.headers, encoding: configuration.encoding
             )

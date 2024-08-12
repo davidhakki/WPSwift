@@ -31,7 +31,7 @@ public struct Post: Decodable {
     public let categories: [Int]
     public let tags: [Int]
     public let link: String
-    public let embeddedContent: EmbeddedContent
+    public let embeddedContent: EmbeddedContent?
     public let htmlDecodedTitle: String
     public let contentHTML: String?
     
@@ -53,7 +53,7 @@ public struct Post: Decodable {
         case contentHTML
     }
     
-    public init(id: Int, date: Date? = nil, modified: Date? = nil, status: String? = nil, title: RenderedContent, content: RenderedContent, excerpt: RenderedContent?, author: Int, featuredMedia: Int?, commentStatus: CommentStatus, categories: [Int], tags: [Int], link: String, embeddedContent: EmbeddedContent) {
+    public init(id: Int, date: Date? = nil, modified: Date? = nil, status: String? = nil, title: RenderedContent, content: RenderedContent, excerpt: RenderedContent?, author: Int, featuredMedia: Int?, commentStatus: CommentStatus, categories: [Int], tags: [Int], link: String, embeddedContent: EmbeddedContent?) {
         self.id = id
         self.date = date
         self.modified = modified
@@ -102,7 +102,7 @@ public struct Post: Decodable {
         self.categories = try container.decodeIfPresent([Int].self, forKey: .categories) ?? []
         self.tags = try container.decodeIfPresent([Int].self, forKey: .tags) ?? []
         self.link = try container.decode(String.self, forKey: .link)
-        self.embeddedContent = try container.decode(EmbeddedContent.self, forKey: .embeddedContent)
+        self.embeddedContent = try container.decodeIfPresent(EmbeddedContent.self, forKey: .embeddedContent)
         self.htmlDecodedTitle = title.rendered.decodedHTML
     }
 }

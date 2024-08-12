@@ -10,6 +10,11 @@ import Foundation
 public enum CommentStatus: String, Decodable {
     case `open`
     case closed
+    case close
+    
+    public var isOpen: Bool {
+        self == .open
+    }
 }
 
 public struct Post: Decodable {
@@ -93,7 +98,7 @@ public struct Post: Decodable {
         self.excerpt = try container.decodeIfPresent(RenderedContent.self, forKey: .excerpt)
         self.author = try container.decodeIfPresent(Int.self, forKey: .author)
         self.featuredMedia = try container.decodeIfPresent(Int.self, forKey: .featuredMedia)
-        self.commentStatus = try container.decodeIfPresent(CommentStatus.self, forKey: .commentStatus) ?? .closed
+        self.commentStatus = (try? container.decodeIfPresent(CommentStatus.self, forKey: .commentStatus)) ?? .closed
         self.categories = try container.decodeIfPresent([Int].self, forKey: .categories) ?? []
         self.tags = try container.decodeIfPresent([Int].self, forKey: .tags) ?? []
         self.link = try container.decode(String.self, forKey: .link)

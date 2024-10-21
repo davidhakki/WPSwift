@@ -91,7 +91,7 @@ final class APIClientTests: XCTestCase {
             }
             .store(in: &cancellables)
 
-        waitForExpectations(timeout: 1)
+        wait(for: [expectation], timeout: 1)
     }
 
     func testAsyncWithFailure() async throws {
@@ -146,7 +146,7 @@ final class APIClientTests: XCTestCase {
             } receiveValue: { _ in }
             .store(in: &cancellables)
 
-        waitForExpectations(timeout: 1)
+        wait(for: [expectation], timeout: 1)
     }
 
 //    func testCombineWithEncodingFailure() throws {

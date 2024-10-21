@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct FeaturedMedia: Codable {
+public struct FeaturedMedia: Codable, Sendable {
     public let id: Int
     public let title: RenderedContent
     public let caption: RenderedContent
@@ -36,7 +36,7 @@ public struct FeaturedMedia: Codable {
     }
 }
 
-public struct MediaDetails: Codable {
+public struct MediaDetails: Codable, Sendable {
     public let width:Int
     public let height: Int
     public let sizes: [String: Size]
@@ -53,7 +53,7 @@ public struct MediaDetails: Codable {
 }
 
 // MARK: - Size
-public struct Size: Codable {
+public struct Size: Codable, Sendable {
     public let width: Int
     public let height: Int
     public let sourceURL: String

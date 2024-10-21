@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct PostCategory: Decodable {
+public struct PostCategory: Decodable, Sendable {
     public let id: Int
     public let count: Int
     public let description: String
@@ -25,7 +25,7 @@ public struct PostCategory: Decodable {
     }
 }
 
-public struct PostCategoryToCreate: Encodable {
+public struct PostCategoryToCreate: Encodable, Sendable {
     public let description: String
     public let name: String
     public let parent: Int
@@ -37,7 +37,7 @@ public struct PostCategoryToCreate: Encodable {
     }
 }
 
-public struct PostCategoryToUpdate: Encodable {
+public struct PostCategoryToUpdate: Encodable, Sendable {
     public let id: Int
     public let description: String
     public let name: String

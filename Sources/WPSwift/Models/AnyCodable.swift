@@ -9,7 +9,7 @@ import Foundation
 
 // Because the WordPress API can return meta data with different value types,
 // we can use the following general-purpose Codable struct:
-public enum AnyCodable: Codable {
+public enum AnyCodable: Codable, Sendable {
     case double(Double)
     case string(String)
     case bool(Bool)

@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct EmbeddedContent: Decodable {
+public struct EmbeddedContent: Decodable, Sendable {
     public var author: Author? {
         _author?.first
     }

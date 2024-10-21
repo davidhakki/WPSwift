@@ -7,7 +7,7 @@
 
 import Foundation
 
-public enum CommentStatus: String, Decodable {
+public enum CommentStatus: String, Codable, Sendable {
     case `open`
     case closed
     case close
@@ -17,7 +17,7 @@ public enum CommentStatus: String, Decodable {
     }
 }
 
-public struct Post: Decodable {
+public struct Post: Decodable, Sendable {
     public let id: Int
     public let date: Date?
     public let modified: Date?
@@ -107,7 +107,7 @@ public struct Post: Decodable {
     }
 }
 
-public struct PostToCreate: Encodable {
+public struct PostToCreate: Encodable, Sendable {
     public let title: RenderedContent
     public let content: RenderedContent
     public let format: String?
@@ -115,12 +115,12 @@ public struct PostToCreate: Encodable {
     public let excerpt: RenderedContent?
     public let status: String?
     public let password: String?
-    public let comment_status: String?
+    public let commentStatus: CommentStatus?
     public let ping_status: String?
     public let categories: [Int]
     public let tags: [Int]
 
-    public init(title: RenderedContent, content: RenderedContent, format: String? = nil, sticky: Bool? = nil, excerpt: RenderedContent? = nil, status: String? = nil, password: String? = nil, comment_status: String? = nil, ping_status: String? = nil, categories: [Int], tags: [Int]) {
+    public init(title: RenderedContent, content: RenderedContent, format: String? = nil, sticky: Bool? = nil, excerpt: RenderedContent? = nil, status: String? = nil, password: String? = nil, commentStatus: CommentStatus? = nil, ping_status: String? = nil, categories: [Int], tags: [Int]) {
         self.title = title
         self.content = content
         self.format = format
@@ -128,14 +128,14 @@ public struct PostToCreate: Encodable {
         self.excerpt = excerpt
         self.status = status
         self.password = password
-        self.comment_status = comment_status
+        self.commentStatus = commentStatus
         self.ping_status = ping_status
         self.categories = categories
         self.tags = tags
     }
 }
 
-public struct PostToUpdate: Encodable {
+public struct PostToUpdate: Encodable, Sendable {
     public let id: Int
     public let title: RenderedContent
     public let content: RenderedContent
@@ -144,12 +144,12 @@ public struct PostToUpdate: Encodable {
     public let excerpt: RenderedContent?
     public let status: String?
     public let password: String?
-    public let comment_status: String?
+    public let commentStatus: CommentStatus?
     public let ping_status: String?
     public let categories: [Int]
     public let tags: [Int]
     
-    public init(id: Int, title: RenderedContent, content: RenderedContent, format: String? = nil, sticky: Bool? = nil, excerpt: RenderedContent? = nil, status: String? = nil, password: String? = nil, comment_status: String? = nil, ping_status: String? = nil, categories: [Int], tags: [Int]) {
+    public init(id: Int, title: RenderedContent, content: RenderedContent, format: String? = nil, sticky: Bool? = nil, excerpt: RenderedContent? = nil, status: String? = nil, password: String? = nil, commentStatus: CommentStatus? = nil, ping_status: String? = nil, categories: [Int], tags: [Int]) {
         self.id = id
         self.title = title
         self.content = content
@@ -158,14 +158,14 @@ public struct PostToUpdate: Encodable {
         self.excerpt = excerpt
         self.status = status
         self.password = password
-        self.comment_status = comment_status
+        self.commentStatus = commentStatus
         self.ping_status = ping_status
         self.categories = categories
         self.tags = tags
     }
 }
 
-public struct RenderedContent: Codable {
+public struct RenderedContent: Codable, Sendable {
     public let rendered: String
     public let protected: Bool
 

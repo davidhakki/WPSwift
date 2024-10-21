@@ -8,7 +8,7 @@
 import Foundation
 import Resting
 
-public struct CategoriesRepository {
+public struct CategoriesRepository: Sendable {
     public init() {}
     
     public func getCategoriesClient(page: Int = 1, perPage: Int = 10, order: OrderType = .descending) throws -> WPClient<EmptyModel, [PostCategory]> {

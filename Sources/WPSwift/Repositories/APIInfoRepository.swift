@@ -8,7 +8,7 @@
 import Foundation
 import Resting
 
-public struct APIInfoRepository {
+public struct APIInfoRepository: Sendable {
     public init() {}
 
     public func getAPIInfo(route: String? = nil) async throws -> APIInfo {

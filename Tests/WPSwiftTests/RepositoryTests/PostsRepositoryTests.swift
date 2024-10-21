@@ -145,10 +145,10 @@ final class CategoriessRepositoryTests: XCTestCase {
         XCTAssertEqual(post.status, postFromData.status)
         XCTAssertEqual(post.title.rendered, postFromData.title.rendered)
         XCTAssertEqual(post.content.rendered, postFromData.content.rendered)
-        XCTAssertEqual(post.excerpt.rendered, postFromData.excerpt.rendered)
+        XCTAssertEqual(post.excerpt?.rendered, postFromData.excerpt?.rendered)
         XCTAssertEqual(post.author, postFromData.author)
-        XCTAssertEqual(post.featured_media, postFromData.featured_media)
-        XCTAssertEqual(post.comment_status, postFromData.comment_status)
+        XCTAssertEqual(post.featuredMedia, postFromData.featuredMedia)
+        XCTAssertEqual(post.commentStatus, postFromData.commentStatus)
 
         XCTAssertNotNil(post.categories)
         XCTAssertNotNil(postFromData.categories)
@@ -156,10 +156,10 @@ final class CategoriessRepositoryTests: XCTestCase {
         XCTAssertNotNil(post.tags)
         XCTAssertNotNil(postFromData.tags)
                 
-        XCTAssertNil(postFromData.embeddedContent.author)
-        XCTAssertNil(postFromData.embeddedContent.featuredMedia)
-        XCTAssertNil(post.embeddedContent.author)
-        XCTAssertNil(post.embeddedContent.featuredMedia)
+        XCTAssertNil(postFromData.embeddedContent?.author)
+        XCTAssertNil(postFromData.embeddedContent?.featuredMedia)
+        XCTAssertNil(post.embeddedContent?.author)
+        XCTAssertNil(post.embeddedContent?.featuredMedia)
     }
 
     func testCreatingPost() async throws {
@@ -179,8 +179,8 @@ final class CategoriessRepositoryTests: XCTestCase {
         XCTAssertEqual(post.status, postFromData.status)
         XCTAssertEqual(post.title.rendered, postFromData.title.rendered)
         XCTAssertEqual(post.content.rendered, postFromData.content.rendered)
-        XCTAssertEqual(post.excerpt?.rendered, postFromData.excerpt.rendered)
-        XCTAssertEqual(post.comment_status, postFromData.comment_status)
+        XCTAssertEqual(post.excerpt?.rendered, postFromData.excerpt?.rendered)
+        XCTAssertEqual(post.commentStatus, postFromData.commentStatus)
 
         XCTAssertNotNil(post.categories)
         XCTAssertNotNil(postFromData.categories)
@@ -188,8 +188,8 @@ final class CategoriessRepositoryTests: XCTestCase {
         XCTAssertNotNil(post.tags)
         XCTAssertNotNil(postFromData.tags)
         
-        XCTAssertNotNil(postFromData.embeddedContent.author)
-        XCTAssertNotNil(postFromData.embeddedContent.featuredMedia)
+        XCTAssertNotNil(postFromData.embeddedContent?.author)
+        XCTAssertNotNil(postFromData.embeddedContent?.featuredMedia)
     }
     
     func testCreatingPostWithBaseURL() async throws {
@@ -209,8 +209,8 @@ final class CategoriessRepositoryTests: XCTestCase {
         XCTAssertEqual(post.status, postFromData.status)
         XCTAssertEqual(post.title.rendered, postFromData.title.rendered)
         XCTAssertEqual(post.content.rendered, postFromData.content.rendered)
-        XCTAssertEqual(post.excerpt?.rendered, postFromData.excerpt.rendered)
-        XCTAssertEqual(post.comment_status, postFromData.comment_status)
+        XCTAssertEqual(post.excerpt?.rendered, postFromData.excerpt?.rendered)
+        XCTAssertEqual(post.commentStatus, postFromData.commentStatus)
 
         XCTAssertNotNil(post.categories)
         XCTAssertNotNil(postFromData.categories)
@@ -218,8 +218,8 @@ final class CategoriessRepositoryTests: XCTestCase {
         XCTAssertNotNil(post.tags)
         XCTAssertNotNil(postFromData.tags)
         
-        XCTAssertNotNil(postFromData.embeddedContent.author)
-        XCTAssertNotNil(postFromData.embeddedContent.featuredMedia)
+        XCTAssertNotNil(postFromData.embeddedContent?.author)
+        XCTAssertNotNil(postFromData.embeddedContent?.featuredMedia)
     }
 
     func testUpdatingPost() async throws {
@@ -240,8 +240,8 @@ final class CategoriessRepositoryTests: XCTestCase {
         XCTAssertEqual(post.status, postFromData.status)
         XCTAssertEqual(post.title.rendered, postFromData.title.rendered)
         XCTAssertEqual(post.content.rendered, postFromData.content.rendered)
-        XCTAssertEqual(post.excerpt?.rendered, postFromData.excerpt.rendered)
-        XCTAssertEqual(post.comment_status, postFromData.comment_status)
+        XCTAssertEqual(post.excerpt?.rendered, postFromData.excerpt?.rendered)
+        XCTAssertEqual(post.commentStatus, postFromData.commentStatus)
 
         XCTAssertNotNil(post.categories)
         XCTAssertNotNil(postFromData.categories)
@@ -249,8 +249,8 @@ final class CategoriessRepositoryTests: XCTestCase {
         XCTAssertNotNil(post.tags)
         XCTAssertNotNil(postFromData.tags)
         
-        XCTAssertNotNil(postFromData.embeddedContent.author)
-        XCTAssertNotNil(postFromData.embeddedContent.featuredMedia)
+        XCTAssertNotNil(postFromData.embeddedContent?.author)
+        XCTAssertNotNil(postFromData.embeddedContent?.featuredMedia)
     }
     
     func testUpdatingPostWithBaseURL() async throws {
@@ -271,8 +271,8 @@ final class CategoriessRepositoryTests: XCTestCase {
         XCTAssertEqual(post.status, postFromData.status)
         XCTAssertEqual(post.title.rendered, postFromData.title.rendered)
         XCTAssertEqual(post.content.rendered, postFromData.content.rendered)
-        XCTAssertEqual(post.excerpt?.rendered, postFromData.excerpt.rendered)
-        XCTAssertEqual(post.comment_status, postFromData.comment_status)
+        XCTAssertEqual(post.excerpt?.rendered, postFromData.excerpt?.rendered)
+        XCTAssertEqual(post.commentStatus, postFromData.commentStatus)
 
         XCTAssertNotNil(post.categories)
         XCTAssertNotNil(postFromData.categories)
@@ -280,8 +280,8 @@ final class CategoriessRepositoryTests: XCTestCase {
         XCTAssertNotNil(post.tags)
         XCTAssertNotNil(postFromData.tags)
         
-        XCTAssertNotNil(postFromData.embeddedContent.author)
-        XCTAssertNotNil(postFromData.embeddedContent.featuredMedia)
+        XCTAssertNotNil(postFromData.embeddedContent?.author)
+        XCTAssertNotNil(postFromData.embeddedContent?.featuredMedia)
     }
     
     private func test(post: Post, with postFromData: Post) {
@@ -292,10 +292,10 @@ final class CategoriessRepositoryTests: XCTestCase {
         XCTAssertEqual(post.status, postFromData.status)
         XCTAssertEqual(post.title.rendered, postFromData.title.rendered)
         XCTAssertEqual(post.content.rendered, postFromData.content.rendered)
-        XCTAssertEqual(post.excerpt.rendered, postFromData.excerpt.rendered)
+        XCTAssertEqual(post.excerpt?.rendered, postFromData.excerpt?.rendered)
         XCTAssertEqual(post.author, postFromData.author)
-        XCTAssertEqual(post.featured_media, postFromData.featured_media)
-        XCTAssertEqual(post.comment_status, postFromData.comment_status)
+        XCTAssertEqual(post.featuredMedia, postFromData.featuredMedia)
+        XCTAssertEqual(post.commentStatus, postFromData.commentStatus)
 
         XCTAssertNotNil(post.categories)
         XCTAssertNotNil(postFromData.categories)
@@ -303,16 +303,16 @@ final class CategoriessRepositoryTests: XCTestCase {
         XCTAssertNotNil(post.tags)
         XCTAssertNotNil(postFromData.tags)
 
-        let authorFromData = postFromData.embeddedContent.author!
-        let author = post.embeddedContent.author!
+        let authorFromData = postFromData.embeddedContent!.author!
+        let author = post.embeddedContent!.author!
 
         // Assertions for author
         XCTAssertEqual(author.id, authorFromData.id)
         XCTAssertEqual(author.name, authorFromData.name)
         XCTAssertEqual(author.description, authorFromData.description)
 
-        let featuredMediaFromData = postFromData.embeddedContent.featuredMedia!
-        let featuredMedia = post.embeddedContent.featuredMedia!
+        let featuredMediaFromData = postFromData.embeddedContent!.featuredMedia!
+        let featuredMedia = post.embeddedContent!.featuredMedia!
 
         // Assertions for featured media
         XCTAssertEqual(featuredMedia.id, featuredMediaFromData.id)

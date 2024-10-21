@@ -1,4 +1,4 @@
-// swift-tools-version: 5.8
+// swift-tools-version: 6.0
 // The swift-tools-version declares the minimum version of Swift required to build this package.
 
 import PackageDescription
@@ -14,7 +14,7 @@ let package = Package(
             targets: ["WPSwift"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/rocxteady/Resting.git", .upToNextMajor(from: "0.0.9")),
+        .package(url: "https://github.com/rocxteady/Resting.git", .upToNextMajor(from: "1.0.0-beta.1")),
     ],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.

@@ -9,7 +9,7 @@ import Foundation
 import Combine
 import Resting
 
-public enum NetworkError: LocalizedError {
+public enum NetworkError: LocalizedError, Sendable {
     case urlMalformed
     case api(Error)
     case unknown
@@ -26,7 +26,7 @@ public enum NetworkError: LocalizedError {
     }
 }
 
-public struct WPClient<RequestModel: Encodable, Response: Decodable> {
+public struct WPClient<RequestModel: Encodable, Response: Decodable>: Sendable {
     private let restClient: RestClient
     private let requestConfig: RequestConfiguration
 

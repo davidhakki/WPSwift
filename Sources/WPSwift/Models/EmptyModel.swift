@@ -7,6 +7,6 @@
 
 import Foundation
 
-public struct EmptyModel: Encodable {
+public struct EmptyModel: Encodable, Sendable {
     public init() {}
 }

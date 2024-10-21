@@ -8,7 +8,7 @@
 import Foundation
 
 class MockedURLProtocol: URLProtocol {
-    static var observer: ((URLRequest) throws -> (URLResponse?, Data?))?
+    nonisolated(unsafe) static var observer: ((URLRequest) throws -> (URLResponse?, Data?))?
 
     override class func canInit(with request: URLRequest) -> Bool {
         true

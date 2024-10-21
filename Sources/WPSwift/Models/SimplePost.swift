@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct SimplePost: Decodable {
+public struct SimplePost: Decodable, Sendable {
     public let id: Int
     public let title: String
     public let link: String

@@ -2,7 +2,7 @@
 // https://docs.swift.org/swift-book
 import Foundation
 
-enum WPConfigurationError: LocalizedError {
+enum WPConfigurationError: LocalizedError, Sendable {
     case wasNotSetup
     case route
     case namespace
@@ -19,12 +19,12 @@ enum WPConfigurationError: LocalizedError {
     }
 }
 
-struct WPConfiguration {
+struct WPConfiguration: Sendable {
     let route: String
     let namespace: String
 }
 
-public struct WPSwift {
+public struct WPSwift: Sendable {
     static internal var configuration: WPConfiguration {
         get throws {
             guard let _configuration else { throw WPConfigurationError.wasNotSetup }
@@ -33,7 +33,7 @@ public struct WPSwift {
             return _configuration
         }
     }
-    static private var _configuration: WPConfiguration?
+    nonisolated(unsafe) static private var _configuration: WPConfiguration?
     static let sessionConfiguration = URLSessionConfiguration.default
 
     static func resetConfiguration() {

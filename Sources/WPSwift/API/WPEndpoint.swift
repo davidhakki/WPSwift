@@ -7,8 +7,8 @@
 
 import Foundation
 
-enum WPEndpoint {
-    enum Posts {
+enum WPEndpoint: Sendable {
+    enum Posts: Sendable {
         case posts
         case post(id: Int)
         case search
@@ -25,7 +25,7 @@ enum WPEndpoint {
         }
     }
     
-    enum Categories {
+    enum Categories: Sendable {
         case categories
         case category(id: Int)
 

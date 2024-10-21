@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct APIInfo: Decodable {
+public struct APIInfo: Decodable, Sendable {
     public let name: String
     public let description: String?
     public let url: String?

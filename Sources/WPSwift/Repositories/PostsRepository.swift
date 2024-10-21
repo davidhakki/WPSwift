@@ -8,7 +8,7 @@
 import Foundation
 import Resting
 
-public struct PostsRepository {
+public struct PostsRepository: Sendable {
     public init() {}
     
     public func getPostsClient(page: Int = 1, perPage: Int = 10, order: OrderType = .descending, categories: [Int]? = nil, categoriesToExclude: [Int]? = nil, tags: [Int]? = nil, tagsToExclude: [Int]? = nil, include: [Int]? = nil) throws -> WPClient<EmptyModel, [Post]> {

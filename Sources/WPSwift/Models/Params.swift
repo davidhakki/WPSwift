@@ -7,18 +7,18 @@
 
 import Foundation
 
-public enum OrderType: String, Decodable {
+public enum OrderType: String, Decodable, Sendable {
     case ascending = "asc"
     case descending = "desc"
 }
 
-extension [String: Any] {
-    static func createParamsForPost(categories: [Int] = [], categoriesToExclude: [Int] = [], tags: [Int] = [], tagsToExclude: [Int] = []) -> [String: Any] {
+extension [String: any Sendable] {
+    static func createParamsForPost(categories: [Int] = [], categoriesToExclude: [Int] = [], tags: [Int] = [], tagsToExclude: [Int] = []) -> [String: any Sendable] {
         let categories = categories.map { "\($0)" }.joined(separator: ",")
         let categoriesToExclude = categoriesToExclude.map { "\($0)" }.joined(separator: ",")
         let tags = tags.map { "\($0)" }.joined(separator: ",")
         let tagsToExclude = tagsToExclude.map { "\($0)" }.joined(separator: ",")
-        var params: [String: Any] = [
+        var params: [String: any Sendable] = [
             "_embed": "",
             "_fields":"id,date_gmt,modified_gmt,status,title,content,contentHTML,excerpt,author,featured_media,comment_status,categories,tags,link,_links"
         ]
@@ -37,13 +37,13 @@ extension [String: Any] {
         return params
     }
     
-    static func createParamsForPosts(page: Int = 1, perPage: Int = 10, order: OrderType = .descending, categories: [Int]? = nil, categoriesToExclude: [Int]? = nil, tags: [Int]? = nil, tagsToExclude: [Int]? = nil, include: [Int]? = nil) -> [String: Any] {
+    static func createParamsForPosts(page: Int = 1, perPage: Int = 10, order: OrderType = .descending, categories: [Int]? = nil, categoriesToExclude: [Int]? = nil, tags: [Int]? = nil, tagsToExclude: [Int]? = nil, include: [Int]? = nil) -> [String: any Sendable] {
         let categories = categories?.map { "\($0)" }.joined(separator: ",")
         let categoriesToExclude = categoriesToExclude?.map { "\($0)" }.joined(separator: ",")
         let tags = tags?.map { "\($0)" }.joined(separator: ",")
         let tagsToExclude = tagsToExclude?.map { "\($0)" }.joined(separator: ",")
         let include = include?.map { "\($0)" }.joined(separator: ",")
-        var params: [String: Any] = [
+        var params: [String: any Sendable] = [
             "page": page,
             "per_page": perPage,
             "order": order.rawValue,
@@ -68,7 +68,7 @@ extension [String: Any] {
         return params
     }
     
-    static func createParamsForSearchPosts(term: String, page: Int = 1, perPage: Int = 10) -> [String: Any] {
+    static func createParamsForSearchPosts(term: String, page: Int = 1, perPage: Int = 10) -> [String: any Sendable] {
         [
             "search": term,
             "page": page,
@@ -78,7 +78,7 @@ extension [String: Any] {
         ]
     }
 
-    static func createParamsForCategories(page: Int = 1, perPage: Int = 100, order: OrderType = .descending) -> [String: Any] {
+    static func createParamsForCategories(page: Int = 1, perPage: Int = 100, order: OrderType = .descending) -> [String: any Sendable] {
         [
             "page": page,
             "per_page": perPage,
@@ -89,7 +89,7 @@ extension [String: Any] {
         ]
     }
     
-    static func createParamsForCategory() -> [String: Any] {
+    static func createParamsForCategory() -> [String: any Sendable] {
         [
             "_fields":"id,count,description,link,name,parent"
         ]

@@ -8,13 +8,13 @@
 import Foundation
 import Resting
 
-struct WPClientConfiguration {
-    enum ParameterType {
-        case object([String: Any])
-        case model(Encodable)
+struct WPClientConfiguration: Sendable {
+    enum ParameterType: Sendable {
+        case object([String: any Sendable])
+        case model(Encodable & Sendable)
     }
     
-    enum EndpointType {
+    enum EndpointType: Sendable {
         case base(baseURL: String, endpoint: String)
         case endpoint(String)
     }
@@ -24,7 +24,7 @@ struct WPClientConfiguration {
     let headers: [String: String]?
     let parameterType: ParameterType?
 
-    init(endpoint: String, method: HTTPMethod = .get, parameters: [String : Any]?, encoding: HTTPEncoding = .urlEncoded, headers: [String: String]? = nil) {
+    init(endpoint: String, method: HTTPMethod = .get, parameters: [String : any Sendable]?, encoding: HTTPEncoding = .urlEncoded, headers: [String: String]? = nil) {
         self.endpointType = .endpoint(endpoint)
         self.method = method
         self.encoding = encoding
@@ -36,7 +36,7 @@ struct WPClientConfiguration {
         self.headers = headers
     }
 
-    init(endpoint: String, method: HTTPMethod = .post, requestModel: Encodable?, encoding: HTTPEncoding = .json, headers: [String: String]? = nil) {
+    init(endpoint: String, method: HTTPMethod = .post, requestModel: (Encodable & Sendable)?, encoding: HTTPEncoding = .json, headers: [String: String]? = nil) {
         self.endpointType = .endpoint(endpoint)
         self.method = method
         self.encoding = encoding
@@ -48,7 +48,7 @@ struct WPClientConfiguration {
         self.headers = headers
     }
     
-    init(baseURL: String, endpoint: String, method: HTTPMethod = .get, parameters: [String : Any]?, encoding: HTTPEncoding = .urlEncoded, headers: [String: String]? = nil) {
+    init(baseURL: String, endpoint: String, method: HTTPMethod = .get, parameters: [String : any Sendable]?, encoding: HTTPEncoding = .urlEncoded, headers: [String: String]? = nil) {
         self.endpointType = .base(baseURL: baseURL, endpoint: endpoint)
         self.method = method
         self.encoding = encoding
@@ -60,7 +60,7 @@ struct WPClientConfiguration {
         self.headers = headers
     }
 
-    init(baseURL: String, endpoint: String, method: HTTPMethod = .post, requestModel: Encodable?, encoding: HTTPEncoding = .json, headers: [String: String]? = nil) {
+    init(baseURL: String, endpoint: String, method: HTTPMethod = .post, requestModel: (Encodable & Sendable)?, encoding: HTTPEncoding = .json, headers: [String: String]? = nil) {
         self.endpointType = .base(baseURL: baseURL, endpoint: endpoint)
         self.method = method
         self.encoding = encoding

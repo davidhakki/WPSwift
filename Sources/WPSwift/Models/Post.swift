@@ -17,7 +17,7 @@ public enum CommentStatus: String, Codable, Sendable {
     }
 }
 
-public struct Post: Decodable, Sendable {
+public struct Post: Identifiable, Decodable, Sendable {
     public let id: Int
     public let date: Date?
     public let modified: Date?
